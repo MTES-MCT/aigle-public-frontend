@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Navigate, Route, HashRouter as Router, Routes } from 'react-router-dom';
 import { ROUTES_MAP } from './constants/routes';
 import Home from './routes/Home';
 import Impact from './routes/Impact';
