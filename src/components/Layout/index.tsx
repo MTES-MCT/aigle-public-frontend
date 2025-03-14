@@ -50,7 +50,7 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                 }
                 serviceTagline="Détection par IA des irrégularités d'occupation du sol"
                 homeLinkProps={{
-                    href: ROUTES_MAP.home.href,
+                    href: `/#${ROUTES_MAP.home.href}`,
                     title: 'Accueil - Aigle',
                 }}
                 navigation={Object.entries(ROUTES_MAP).map(([routeId, { title, href, external }]) => ({
