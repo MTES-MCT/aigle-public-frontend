@@ -55,7 +55,7 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                 }}
                 navigation={Object.entries(ROUTES_MAP).map(([routeId, { title, href, external }]) => ({
                     linkProps: {
-                        href,
+                        href: external ? href : `/#${href}`,
                         target: external ? '_blank' : '_self',
                     },
                     isActive: isNavigationItemActive(routeId, pathname),
