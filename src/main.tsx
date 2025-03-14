@@ -1,14 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import '@codegouvfr/react-dsfr/main.css'
-import App from './App.tsx'
-import { startReactDsfr } from "@codegouvfr/react-dsfr/spa";
+import '@codegouvfr/react-dsfr/main.css';
+import { startReactDsfr } from '@codegouvfr/react-dsfr/spa';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.scss';
 
-startReactDsfr({ defaultColorScheme: "system" });
+startReactDsfr({ defaultColorScheme: 'system' });
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <StrictMode>
+        <App />
+    </StrictMode>,
+);

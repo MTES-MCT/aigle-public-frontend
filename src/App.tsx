@@ -1,26 +1,19 @@
-import "./App.css";
-import { Header } from "@codegouvfr/react-dsfr/Header";
+import React from 'react';
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { ROUTES_MAP } from './constants/routes';
+import Home from './routes/Home';
+import Impact from './routes/Impact';
 
-function App() {
-  return (
-    <>
-      <Header
-        brandTop={
-          <>
-            INTITULE
-            <br />
-            OFFICIEL
-          </>
-        }
-        homeLinkProps={{
-          href: "/",
-          title: "Accueil",
-        }}
-      />
+const Component: React.FC = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route element={<Home />} path={ROUTES_MAP.home.href} />
+                <Route element={<Impact />} path={ROUTES_MAP.impact.href} />
+                <Route path="*" element={<Navigate to={ROUTES_MAP.home.href} replace={true} />} />
+            </Routes>
+        </Router>
+    );
+};
 
-      <div>Ceci est un test</div>
-    </>
-  );
-}
-
-export default App;
+export default Component;
