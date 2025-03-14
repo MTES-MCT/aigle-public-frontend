@@ -34,7 +34,7 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                         iconId="fr-icon-account-circle-fill"
                         priority="secondary"
                         linkProps={{
-                            href: import.meta.env.VITE_AIGLE_APP_URL,
+                            href: import.meta.env.VITE_AIGLE_APP_URL || 'https://app.aigle.beta.gouv.fr/',
                         }}
                     >
                         Se connecter
