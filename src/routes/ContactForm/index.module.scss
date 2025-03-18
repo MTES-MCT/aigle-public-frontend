@@ -1,0 +1,17 @@
+.label {
+    &::after {
+        content: ' *';
+        color: var(--text-label-blue-france);
+    }
+}
+
+.form {
+    padding: 2rem 0;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: end;
+}

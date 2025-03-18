@@ -6,7 +6,7 @@ import { headerFooterDisplayItem } from '@codegouvfr/react-dsfr/Display';
 import { Footer } from '@codegouvfr/react-dsfr/Footer';
 import { Header } from '@codegouvfr/react-dsfr/Header';
 import { useLocation } from 'react-router-dom';
-import { ROUTES_MAP } from '../../constants/routes';
+import { getHref, ROUTES_MAP } from '../../constants/routes';
 import classes from './index.module.scss';
 
 const isNavigationItemActive = (routeId: keyof typeof ROUTES_MAP, pathname: string) =>
@@ -50,12 +50,12 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                 }
                 serviceTagline="Détection par IA des irrégularités d'occupation du sol"
                 homeLinkProps={{
-                    href: `/#${ROUTES_MAP.home.href}`,
+                    href: getHref('home'),
                     title: 'Accueil - Aigle',
                 }}
                 navigation={Object.entries(ROUTES_MAP).map(([routeId, { title, href, external }]) => ({
                     linkProps: {
-                        href: external ? href : `/#${href}`,
+                        href: external ? href : getHref(routeId),
                         target: external ? '_blank' : '_self',
                     },
                     isActive: isNavigationItemActive(routeId, pathname),

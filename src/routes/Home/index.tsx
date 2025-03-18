@@ -3,8 +3,10 @@ import { Button } from '@codegouvfr/react-dsfr/Button';
 import clsx from 'clsx';
 import React from 'react';
 import Layout from '../../components/Layout';
-import { MAIL_TO_LINK } from '../../constants/routes';
+import { getHref } from '../../constants/routes';
 import classes from './index.module.scss';
+
+const CONTACT_HREF_DEMO = `${getHref('contact')}?reason=DEMO`;
 
 const Component: React.FC = () => {
     return (
@@ -41,7 +43,7 @@ const Component: React.FC = () => {
 
                         <Button
                             linkProps={{
-                                href: MAIL_TO_LINK,
+                                href: CONTACT_HREF_DEMO
                             }}
                         >
                             Demander une démo
@@ -136,7 +138,7 @@ const Component: React.FC = () => {
 
                     <Button
                         linkProps={{
-                            href: MAIL_TO_LINK,
+                            href: CONTACT_HREF_DEMO,
                         }}
                     >
                         Demander une démo

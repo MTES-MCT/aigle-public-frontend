@@ -1,5 +1,3 @@
-export const MAIL_TO_LINK = 'mailto:contact@aigle.beta.gouv.fr';
-
 export const ROUTES_MAP: {
     [id: string]: {
         href: string;
@@ -20,9 +18,10 @@ export const ROUTES_MAP: {
         href: '/impact',
         title: 'Notre impact',
     },
-    contactUs: {
-        href: MAIL_TO_LINK,
-        title: 'Nous contacter',
-        external: true,
+    contact: {
+        href: '/contact',
+        title: 'Nous contacter'
     },
 } as const;
+
+export const getHref = (routeId: keyof typeof ROUTES_MAP) => `/#${ROUTES_MAP[routeId].href}`;
