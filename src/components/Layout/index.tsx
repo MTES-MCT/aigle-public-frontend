@@ -62,7 +62,7 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                     text: title,
                 }))}
             />
-            <div className="fr-container">{children}</div>
+            <div>{children}</div>
             <Footer
                 accessibility="partially compliant"
                 termsLinkProps={{

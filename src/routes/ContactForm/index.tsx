@@ -71,25 +71,30 @@ const Component: React.FC = () => {
 
     return (
         <Layout>
-            <form onSubmit={form.onSubmit(handleSubmit)} className={classes.form}>
-                <h1>Formulaire de prise de contact</h1>
+            <div className="fr-container">
+                <form onSubmit={form.onSubmit(handleSubmit)} className={classes.form}>
+                    <h1>Formulaire de prise de contact</h1>
 
-                <Input label={<span className={classes.label}>Nom</span>} {...getInputProps('lastName')} />
-                <Input label={<span className={classes.label}>Prénom</span>} {...getInputProps('firstName')} />
-                <Input label={<span className={classes.label}>Collectivité</span>} {...getInputProps('collectivity')} />
-                <Input label={<span className={classes.label}>Poste</span>} {...getInputProps('job')} />
-                <Input label={<span className={classes.label}>Téléphone</span>} {...getInputProps('phone')} />
-                <Input label={<span className={classes.label}>Adresse e-mail</span>} {...getInputProps('email')} />
+                    <Input label={<span className={classes.label}>Nom</span>} {...getInputProps('lastName')} />
+                    <Input label={<span className={classes.label}>Prénom</span>} {...getInputProps('firstName')} />
+                    <Input
+                        label={<span className={classes.label}>Collectivité</span>}
+                        {...getInputProps('collectivity')}
+                    />
+                    <Input label={<span className={classes.label}>Poste</span>} {...getInputProps('job')} />
+                    <Input label={<span className={classes.label}>Téléphone</span>} {...getInputProps('phone')} />
+                    <Input label={<span className={classes.label}>Adresse e-mail</span>} {...getInputProps('email')} />
 
-                <div className={classes['form-actions']}>
-                    <Button type="reset" onClick={() => form.reset()} priority="secondary">
-                        Réinitialiser
-                    </Button>
-                    <Button type="submit" disabled={contactLoading}>
-                        Envoyer
-                    </Button>
-                </div>
-            </form>
+                    <div className={classes['form-actions']}>
+                        <Button type="reset" onClick={() => form.reset()} priority="secondary">
+                            Réinitialiser
+                        </Button>
+                        <Button type="submit" disabled={contactLoading}>
+                            Envoyer
+                        </Button>
+                    </div>
+                </form>
+            </div>
         </Layout>
     );
 };
