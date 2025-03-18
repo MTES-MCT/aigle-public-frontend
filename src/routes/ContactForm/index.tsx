@@ -8,7 +8,7 @@ import Layout from '../../components/Layout';
 import { ContactReason, ContactReasons } from '../../constants/contact';
 import classes from './index.module.scss';
 
-const CONTACT_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/api/utils/contact-us/`;
+const CONTACT_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL || 'https://api.aigle.beta.gouv.fr'}/api/utils/contact-us/`;
 const CONTACT_EMAIL = 'contact@aigle.beta.gouv.fr';
 
 type InputState = 'error' | 'default';
