@@ -1,5 +1,6 @@
 import Button from '@codegouvfr/react-dsfr/Button';
 import { Input } from '@codegouvfr/react-dsfr/Input';
+import { Notice } from '@codegouvfr/react-dsfr/Notice';
 import { isEmail, isNotEmpty, useForm } from '@mantine/form';
 import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -8,6 +9,7 @@ import { ContactReason, ContactReasons } from '../../constants/contact';
 import classes from './index.module.scss';
 
 const CONTACT_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/api/utils/contact-us/`;
+const CONTACT_EMAIL = 'contact@aigle.beta.gouv.fr';
 
 type InputState = 'error' | 'default';
 
@@ -30,6 +32,8 @@ const Component: React.FC = () => {
         [searchParams],
     );
     const [contactLoading, setContactLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     const form = useForm<FormValues>({
         validate: {
@@ -43,6 +47,8 @@ const Component: React.FC = () => {
     });
 
     const handleSubmit = async (values: FormValues) => {
+        setError(false);
+        setSuccess(false);
         setContactLoading(true);
         const params = new URLSearchParams();
         Object.entries(values).forEach(([key, value]) => {
@@ -50,9 +56,10 @@ const Component: React.FC = () => {
         });
         params.append('contactReason', contactReason);
 
-        try {
-            await fetch(`${CONTACT_ENDPOINT}?${params.toString()}`);
-        } catch (err) {}
+        const res = await fetch(`${CONTACT_ENDPOINT}?${params.toString()}`);
+
+        setError(!res.ok);
+        setSuccess(res.ok);
 
         setContactLoading(false);
     };
@@ -61,19 +68,37 @@ const Component: React.FC = () => {
         ...form.getInputProps(field),
         key: form.key(field),
         state: form.errors[field] ? 'error' : ('default' as InputState),
-        onChange: ({ target: { value } }) => form.setFieldValue(field, value),
+        onChange: ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => form.setFieldValue(field, value),
         stateRelatedMessage: form.errors[field],
     });
-
-    console.log(getInputProps('lastName'));
-    console.log(form.values);
-    console.log(form.errors);
 
     return (
         <Layout>
             <div className="fr-container">
                 <form onSubmit={form.onSubmit(handleSubmit)} className={classes.form}>
                     <h1>Formulaire de prise de contact</h1>
+
+                    {error ? (
+                        <Notice
+                            className={classes.notice}
+                            severity="alert"
+                            title="Une erreur est survenue lors de l'envoi du formulaire."
+                            description={
+                                <span>
+                                    Si l'erreur persiste, veuillez contacter directement{' '}
+                                    <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+                                </span>
+                            }
+                        />
+                    ) : null}
+                    {success ? (
+                        <Notice
+                        className={classes.notice}
+                            severity="info"
+                            title="Votre prise de contact a bien été prise en compte."
+                            description="Nous revenons vers vous au plus vite."
+                        />
+                    ) : null}
 
                     <Input label={<span className={classes.label}>Nom</span>} {...getInputProps('lastName')} />
                     <Input label={<span className={classes.label}>Prénom</span>} {...getInputProps('firstName')} />
