@@ -14,10 +14,6 @@ export const ROUTES_MAP: {
         title: 'A propos',
         external: true,
     },
-    impact: {
-        href: '/impact',
-        title: 'Notre impact',
-    },
     contact: {
         href: '/contact',
         title: 'Nous contacter'
