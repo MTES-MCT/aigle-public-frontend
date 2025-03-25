@@ -1,3 +1,5 @@
+import mockupsImg from '@/assets/mockups.png';
+import Badge from '@codegouvfr/react-dsfr/Badge';
 import { Button } from '@codegouvfr/react-dsfr/Button';
 import clsx from 'clsx';
 import React from 'react';
@@ -10,35 +12,48 @@ const CONTACT_HREF_DEMO = `${getHref('contact')}?reason=DEMO`;
 const Component: React.FC = () => {
     return (
         <Layout>
-            <div className={classes['sections-container']}>
-                <section className={classes['section-mission']}>
-                    <div className="fr-container">
-                        <section className={classes['text-section']}>
-                            <h1 className={classes["section-mission-text"]}>
-                                Facilitez la lutte contre les constructions ou installations illégales, la cabanisation
-                                et les détournements d'usages dans les espaces naturels, agricoles et forestiers afin de
-                                les préserver
+            <div className="fr-container">
+                <div className={classes['sections-container']}>
+                    <section className={classes['section-mission']}>
+                        <section className={clsx(classes['text-section'], classes['section-mission-left'])}>
+                            <h1 className={classes['section-mission-text']}>
+                                Facilitez le repérage des constructions et installations illégales dans les espaces
+                                agricoles et naturels
                             </h1>
-                            <p className={clsx(classes["section-mission-text"], "bold")}>
-                                AIGLE, grâce à la détection automatisée par intelligence artificielle, vous aide en
-                                quelques clics à connaître, mesurer, localiser et identifier les parcelles naturelles et
-                                agricoles artificialisées illégalement de votre territoire.
-                            </p>
-                            <p className={classes["section-mission-text"]}>
-                                Dégradation (pollution des eaux, déchets) de la nature, gaspillage (mitage, détournement
-                                de l'usage…) des terres agricoles, insécurité des personnes face aux risques inondation
-                                et feu de forêt, sont quelques-unes des raisons pour lutter contre ce phénomène.
-                            </p>
-                            <p className={classes["section-mission-text"]}>
-                                AIGLE est destiné aux collectivités et aux services de l'État au service de leur
-                                stratégie de lutte contre les constructions ou installations illégales. Il permet de
-                                prioriser et cibler son action, mobiliser et dissuader.
-                            </p>
-                            <p className={classes["section-mission-text"]}>
-                                Facilement utilisable depuis son bureau ou sur le terrain via une tablette ou un
-                                smartphone, et doté d'une interface cartographique et de diverses fonctionnalités
-                                “utilisateur”, il identifie différents types d'installations comme les constructions
-                                (maison, chalets, mazets…), les mobil-homes, les caravanes, piscines et les bateaux.
+                            <ul className={classes['section-mission-tags']}>
+                                <li className={classes['section-mission-tag-container']}>
+                                    <Badge severity="info" noIcon>
+                                        <span className={classes['section-mission-tag-icon']}>🤖</span> Intelligence
+                                        artificielle
+                                    </Badge>
+                                </li>
+                                <li className={classes['section-mission-tag-container']}>
+                                    <Badge severity="info" noIcon>
+                                        <span className={classes['section-mission-tag-icon']}>🏚️</span> Détournement
+                                        d'usage
+                                    </Badge>
+                                </li>
+                                <li className={classes['section-mission-tag-container']}>
+                                    <Badge severity="info" noIcon>
+                                        <span className={classes['section-mission-tag-icon']}>🛖</span> Cabanisation
+                                    </Badge>
+                                </li>
+                                <li className={classes['section-mission-tag-container']}>
+                                    <Badge severity="info" noIcon>
+                                        <span className={classes['section-mission-tag-icon']}>🌳</span> Atteinte à
+                                        l'environnement
+                                    </Badge>
+                                </li>
+                                <li className={classes['section-mission-tag-container']}>
+                                    <Badge severity="info" noIcon>
+                                        <span className={classes['section-mission-tag-icon']}>🔥</span> Innondations et
+                                        feux de forêt
+                                    </Badge>
+                                </li>
+                            </ul>
+                            <p className={classes['section-mission-text']}>
+                                AIGLE aide les collectivités et les services de l'État à cibler, prioriser et renforcer
+                                leur action de lutte contre les parcelles occupées illégalement.
                             </p>
 
                             <Button
@@ -49,9 +64,19 @@ const Component: React.FC = () => {
                                 Demander une démo
                             </Button>
                         </section>
-                    </div>
-                </section>
-                <div className="fr-container">
+                        <section className={classes['section-mission-right']}>
+                            <img
+                                className={classes['section-mission-mockups']}
+                                src={mockupsImg}
+                                alt="Maquettes de l'application Aigle"
+                            />
+                            <p 
+                                className={classes['section-mission-mockups-label']}>
+                                Accessible au bureau comme sur le terrain, AIGLE propose une carte interactive pour
+                                détecter automatiquement constructions, piscines, mobil-homes, caravanes et bateaux.
+                            </p>
+                        </section>
+                    </section>
                     <section className={clsx(classes['text-section'], classes['section-definition'])}>
                         <h1>
                             Qu'appelle-t-on constructions/installations illégales, cabanisation ou détournements d'usage
