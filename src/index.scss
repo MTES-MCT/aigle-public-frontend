@@ -9,3 +9,31 @@ body {
 .bold {
     font-weight: 700;
 }
+
+.grouped-paragraphs {
+    p:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
+
+
+.legal-content {
+    padding: 2rem 0;
+
+    .legal-list > li {
+        font-weight: 700;
+    }
+
+    ul {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    p:has(+ ul) {
+        margin-bottom: 0.5rem;
+    }
+
+    .last-update-text {
+        font-style: italic;
+    }
+}

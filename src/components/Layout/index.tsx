@@ -7,6 +7,7 @@ import { Footer } from '@codegouvfr/react-dsfr/Footer';
 import { Header } from '@codegouvfr/react-dsfr/Header';
 import { useLocation } from 'react-router-dom';
 import { getHref, ROUTES_MAP } from '../../constants/routes';
+import { AIGLE_APP_URL } from '../../constants/urls';
 import classes from './index.module.scss';
 
 const isNavigationItemActive = (routeId: keyof typeof ROUTES_MAP, pathname: string) =>
@@ -34,7 +35,7 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                         iconId="fr-icon-account-circle-fill"
                         priority="secondary"
                         linkProps={{
-                            href: import.meta.env.VITE_AIGLE_APP_URL || 'https://app.aigle.beta.gouv.fr/',
+                            href: AIGLE_APP_URL,
                         }}
                     >
                         Se connecter
@@ -53,26 +54,33 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                     href: getHref('home'),
                     title: 'Accueil - Aigle',
                 }}
-                navigation={Object.entries(ROUTES_MAP).map(([routeId, { title, href, external }]) => ({
-                    linkProps: {
-                        href: external ? href : getHref(routeId),
-                        target: external ? '_blank' : '_self',
-                    },
-                    isActive: isNavigationItemActive(routeId, pathname),
-                    text: title,
-                }))}
+                navigation={Object.entries(ROUTES_MAP)
+                    .filter(([, { displayedInHeader }]) => displayedInHeader)
+                    .map(([routeId, { title, href, external }]) => ({
+                        linkProps: {
+                            href: external ? href : getHref(routeId),
+                            target: external ? '_blank' : '_self',
+                        },
+                        isActive: isNavigationItemActive(routeId, pathname),
+                        text: title,
+                    }))}
             />
             <div>{children}</div>
             <Footer
                 accessibility="partially compliant"
                 termsLinkProps={{
-                    href: '#',
+                    href: getHref('legalMentions'),
                 }}
                 websiteMapLinkProps={{
                     href: '#',
                 }}
                 bottomItems={[
-                    // other other bottom items...
+                    {
+                        text: "Conditions générales d'utilisation",
+                        linkProps: {
+                            href: getHref('generalUseConditions'),
+                        },
+                    },
                     headerFooterDisplayItem,
                 ]}
             />
