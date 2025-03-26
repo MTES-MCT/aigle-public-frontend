@@ -10,13 +10,6 @@ body {
     font-weight: 700;
 }
 
-.grouped-paragraphs {
-    p:not(:last-child) {
-        margin-bottom: 0;
-    }
-}
-
-
 .legal-content {
     padding: 2rem 0;
 
@@ -35,5 +28,11 @@ body {
 
     .last-update-text {
         font-style: italic;
+    }
+}
+
+.grouped-paragraphs {
+    p:not(:last-child) {
+        margin-bottom: 0;
     }
 }
