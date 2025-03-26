@@ -2,9 +2,9 @@ import React from 'react';
 import { Navigate, Route, HashRouter as Router, Routes } from 'react-router-dom';
 import { ROUTES_MAP } from './constants/routes';
 import ContactForm from './routes/ContactForm';
-import GeneralUseConditions from './routes/GeneralConditionsOfUse'
-import LegalMentions from './routes/LegalMentions';
+import GeneralUseConditions from './routes/GeneralConditionsOfUse';
 import Home from './routes/Home';
+import LegalMentions from './routes/LegalMentions';
 
 const Component: React.FC = () => {
     return (

@@ -70,8 +70,7 @@ const Component: React.FC = () => {
                                 src={mockupsImg}
                                 alt="Maquettes de l'application Aigle"
                             />
-                            <p 
-                                className={classes['section-mission-mockups-label']}>
+                            <p className={classes['section-mission-mockups-label']}>
                                 Accessible au bureau comme sur le terrain, AIGLE propose une carte interactive pour
                                 détecter automatiquement constructions, piscines, mobil-homes, caravanes et bateaux.
                             </p>

@@ -6,11 +6,10 @@ import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import { CONTACT_EMAIL, ContactReason, ContactReasons } from '../../constants/contact';
-import classes from './index.module.scss';
 import { API_BASE_URL } from '../../constants/urls';
+import classes from './index.module.scss';
 
 const CONTACT_ENDPOINT = `${API_BASE_URL}/api/utils/contact-us/`;
-
 
 type InputState = 'error' | 'default';
 
@@ -94,7 +93,7 @@ const Component: React.FC = () => {
                     ) : null}
                     {success ? (
                         <Notice
-                        className={classes.notice}
+                            className={classes.notice}
                             severity="info"
                             title="Votre prise de contact a bien été prise en compte."
                             description="Nous revenons vers vous au plus vite."

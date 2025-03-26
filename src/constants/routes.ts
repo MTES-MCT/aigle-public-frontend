@@ -20,7 +20,7 @@ export const ROUTES_MAP: {
     home: {
         href: '/accueil',
         title: 'Accueil',
-        displayedInHeader: true
+        displayedInHeader: true,
     },
     generalUseConditions: {
         href: '/cgu',
@@ -28,18 +28,18 @@ export const ROUTES_MAP: {
     },
     legalMentions: {
         href: '/mentions-legales',
-        displayedInHeader: false
+        displayedInHeader: false,
     },
     about: {
         href: 'https://beta.gouv.fr/startups/aigle.html',
         title: 'A propos',
         external: true,
-        displayedInHeader: true
+        displayedInHeader: true,
     },
     contact: {
         href: '/contact',
         title: 'Nous contacter',
-        displayedInHeader: true
+        displayedInHeader: true,
     },
 } as const;
 

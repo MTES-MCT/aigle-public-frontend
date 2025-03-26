@@ -11,8 +11,8 @@ const Component: React.FC = () => {
                 <div className="legal-content">
                     <h1>Conditions Générales d'Utilisation (CGU) du service numérique AIGLE</h1>
 
-                    <p className='last-update-text'>Dernière mise à jour : mars 2025</p>
-                    <ol className='legal-list'>
+                    <p className="last-update-text">Dernière mise à jour : mars 2025</p>
+                    <ol className="legal-list">
                         <li>Objet</li>
                         <p>
                             L'application AIGLE est un outil numérique permettant la détection de constructions et
@@ -102,10 +102,7 @@ const Component: React.FC = () => {
                             📧 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                         </p>
                         <p>
-                            🌐{' '}
-                            <a href={AIGLE_APP_URL}>
-                                {AIGLE_APP_URL}
-                            </a>
+                            🌐 <a href={AIGLE_APP_URL}>{AIGLE_APP_URL}</a>
                         </p>
                     </ol>
                 </div>
