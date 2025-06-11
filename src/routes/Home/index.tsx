@@ -46,7 +46,7 @@ const Component: React.FC = () => {
                                 </li>
                                 <li className={classes['section-mission-tag-container']}>
                                     <Badge severity="info" noIcon>
-                                        <span className={classes['section-mission-tag-icon']}>🔥</span> Innondations et
+                                        <span className={classes['section-mission-tag-icon']}>🔥</span> Inondations et
                                         feux de forêt
                                     </Badge>
                                 </li>
