@@ -1,7 +1,9 @@
-.label {
-    &::after {
-        content: ' *';
-        color: var(--text-label-blue-france);
+.required {
+    .label {
+        &::after {
+            content: ' *';
+            color: var(--text-label-blue-france);
+        }
     }
 }
 
@@ -12,8 +14,13 @@
 .form-actions {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
-    justify-content: end;
+    justify-content: space-between;
+
+    .form-actions-left {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
 }
 
 .notice {
