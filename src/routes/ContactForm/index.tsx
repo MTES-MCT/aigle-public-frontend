@@ -2,6 +2,7 @@ import Button from '@codegouvfr/react-dsfr/Button';
 import { Input } from '@codegouvfr/react-dsfr/Input';
 import { Notice } from '@codegouvfr/react-dsfr/Notice';
 import { RadioButtons } from '@codegouvfr/react-dsfr/RadioButtons';
+import { Stepper } from '@codegouvfr/react-dsfr/Stepper';
 import { isEmail, isNotEmpty, useForm } from '@mantine/form';
 import { clsx } from 'clsx';
 import React, { useMemo, useState } from 'react';
@@ -33,6 +34,8 @@ const INTERESTS_NAMES_MAP: {
     RESOLVE_AN_ISSUE: 'Aigle répond précisément à un problème que je rencontre',
     UNKNOWN: "Je ne sais pas si Aigle m'intéresse, je cherche à comprendre à quoi ça sert",
 } as const;
+
+const FORM_STEP_TOTAL = 2;
 
 interface FormValues {
     collectivity: string;
@@ -126,6 +129,8 @@ const Component: React.FC = () => {
                         mieux.
                     </p>
 
+                    <Stepper currentStep={formStep} stepCount={FORM_STEP_TOTAL} title="" />
+
                     {error ? (
                         <Notice
                             className={classes.notice}
@@ -178,7 +183,7 @@ const Component: React.FC = () => {
                         </>
                     ) : null}
 
-                    {formStep === 2 ? (
+                    {formStep === FORM_STEP_TOTAL ? (
                         <>
                             <RadioButtons
                                 legend={
@@ -228,12 +233,12 @@ const Component: React.FC = () => {
                             <Button
                                 type="button"
                                 disabled={contactLoading || (formStep === 1 && !form.getValues().collectivity)}
-                                onClick={() => setFormStep(formStep === 1 ? 2 : 1)}
+                                onClick={() => setFormStep(formStep === 1 ? FORM_STEP_TOTAL : 1)}
                                 priority="secondary"
                             >
                                 {formStep === 1 ? 'Suivant' : 'Retour'}
                             </Button>
-                            {formStep === 2 ? (
+                            {formStep === FORM_STEP_TOTAL ? (
                                 <Button type="submit" disabled={contactLoading}>
                                     Envoyer
                                 </Button>
