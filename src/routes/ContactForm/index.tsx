@@ -56,6 +56,11 @@ const FORM_FIELDS_VALIDATE = {
     interest: isNotEmpty("Veuillez renseigner l'intérêt"),
     name: isNotEmpty('Veuillez renseigner votre nom et prénom'),
     email: isEmail('Veuillez renseigner une adresse e-mail valide'),
+
+    job: isNotEmpty('Veuillez renseigner votre fonction'),
+    phone: isNotEmpty('Veuillez renseigner votre numéro de téléphone'),
+
+    issue: isNotEmpty('Veuillez décrire votre problème'),
 };
 
 const Component: React.FC = () => {
@@ -112,7 +117,6 @@ const Component: React.FC = () => {
         className: clsx({
             [classes.required]: field in FORM_FIELDS_VALIDATE,
         }),
-        key: form.key(field),
         state: form.errors[field] ? 'error' : ('default' as InputState),
         onChange: ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => form.setFieldValue(field, value),
         stateRelatedMessage: form.errors[field],
