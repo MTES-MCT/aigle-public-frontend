@@ -1,28 +1,13 @@
-.required {
-    .label {
-        &::after {
-            content: ' *';
-            color: var(--text-label-blue-france);
-        }
+// ponytail: cross-origin iframe cannot self-size (Brevo posts no height), so heights are measured, not computed.
+// Measured full-page height of the Brevo form: 1403px above 576px wide, 1604px at 375px, 1727px at 320px.
+// Re-measure and bump if the form gains fields.
+.contact-iframe {
+    display: block;
+    width: 100%;
+    height: 1450px;
+    border: 0;
+
+    @media (max-width: 576px) {
+        height: 1800px;
     }
-}
-
-.form {
-    padding: 2rem 0;
-}
-
-.form-actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    .form-actions-left {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-    }
-}
-
-.notice {
-    margin-bottom: 1rem;
 }
