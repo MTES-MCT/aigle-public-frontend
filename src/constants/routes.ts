@@ -30,6 +30,10 @@ export const ROUTES_MAP: {
         href: '/mentions-legales',
         displayedInHeader: false,
     },
+    accessibility: {
+        href: '/accessibilite',
+        displayedInHeader: false,
+    },
     about: {
         href: 'https://beta.gouv.fr/startups/aigle.html',
         title: 'A propos',

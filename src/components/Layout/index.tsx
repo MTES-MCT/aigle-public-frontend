@@ -67,7 +67,10 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
             />
             <div>{children}</div>
             <Footer
-                accessibility="partially compliant"
+                accessibility="non compliant"
+                accessibilityLinkProps={{
+                    href: getHref('accessibility'),
+                }}
                 termsLinkProps={{
                     href: getHref('legalMentions'),
                 }}

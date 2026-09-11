@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Layout from '../../components/Layout';
+import { CONTACT_EMAIL } from '../../constants/contact';
 import { getHref } from '../../constants/routes';
 import { AIGLE_PUBLIC_URL } from '../../constants/urls';
 
 const HOSTING_URL = 'https://www.scaleway.com/';
-const ACCESSIBILITY_CONTACT_EMAIL = 'accessibilite@aigle.beta.gouv.fr';
 const RGPD_CONTACT_EMAIL = 'dpo@ecologie.gouv.fr';
 const TEAM_CONTACT_EMAIL = 'aigle@beta.gouv.fr';
 
@@ -57,13 +57,13 @@ const Component: React.FC = () => {
 
                         <li>Accessibilité</li>
                         <p>
-                            Ce site est partiellement conforme au RGAA (Référentiel Général d'Amélioration de
-                            l'Accessibilité). Des améliorations sont en cours.
+                            Ce site est non conforme au RGAA (Référentiel Général d'Amélioration de l'Accessibilité).
+                            Des améliorations sont en cours.
                         </p>
                         <div className="grouped-paragraphs">
                             <p>Pour signaler un problème d'accessibilité :</p>
                             <p>
-                                📧 <a href={`mailto:${ACCESSIBILITY_CONTACT_EMAIL}`}>{ACCESSIBILITY_CONTACT_EMAIL}</a>
+                                📧 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                             </p>
                         </div>
 
