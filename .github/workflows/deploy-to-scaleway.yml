@@ -1,28 +1,48 @@
-name: Build and Deploy to Scaleway
+# Preprod only (site-preprod.aigle.beta.gouv.fr): prod stays on GitHub Pages (deploy.yml), since
+# aigle.beta.gouv.fr is the apex of its DNS zone and Edge Services needs a CNAME.
+name: Build and Deploy preprod to Scaleway
 
 on:
     push:
         branches:
             - develop
-            - main
 
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
-        environment: ${{ github.ref_name }}
+        environment: develop
 
         steps:
+            - name: Check environment secrets
+              # src/constants/urls.ts falls back to the prod URLs: a preprod build missing one would talk to prod
+              env:
+                  VITE_AIGLE_APP_URL: ${{ secrets.VITE_AIGLE_APP_URL }}
+                  VITE_AIGLE_PUBLIC_URL: ${{ secrets.VITE_AIGLE_PUBLIC_URL }}
+                  VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+                  SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+                  SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+                  SCW_BUCKET_NAME: ${{ secrets.SCW_BUCKET_NAME }}
+              run: |
+                  missing=""
+                  for name in VITE_AIGLE_APP_URL VITE_AIGLE_PUBLIC_URL VITE_API_BASE_URL SCW_ACCESS_KEY SCW_SECRET_KEY SCW_BUCKET_NAME; do
+                      [ -n "${!name}" ] || missing="$missing $name"
+                  done
+                  if [ -n "$missing" ]; then
+                      echo "::error::Missing secrets in the 'develop' environment:$missing"
+                      exit 1
+                  fi
+
             - name: Checkout repository
               uses: actions/checkout@v4
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '18'
+                  node-version: '20'
                   cache: 'npm'
 
             - name: Install dependencies
-              run: npm ci --legacy-peer-deps
+              run: npm ci
 
             - name: Create env file
               run: |
@@ -33,6 +53,10 @@ jobs:
 
             - name: Build
               run: npm run build
+
+            - name: Keep preprod out of search engines
+              run: |
+                  printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
 
             - name: Install AWS CLI
               uses: unfor19/install-aws-cli-action@v1
