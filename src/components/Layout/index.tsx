@@ -1,72 +1,131 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 
 import { Badge } from '@codegouvfr/react-dsfr/Badge';
-import Button from '@codegouvfr/react-dsfr/Button';
 import { headerFooterDisplayItem } from '@codegouvfr/react-dsfr/Display';
 import { Footer } from '@codegouvfr/react-dsfr/Footer';
 import { Header } from '@codegouvfr/react-dsfr/Header';
+import { SkipLinks } from '@codegouvfr/react-dsfr/SkipLinks';
 import { useLocation } from 'react-router-dom';
-import { getHref, ROUTES_MAP } from '../../constants/routes';
+import { getHref, RouteId, ROUTES_MAP } from '../../constants/routes';
 import { AIGLE_APP_URL } from '../../constants/urls';
 import classes from './index.module.scss';
 
-const isNavigationItemActive = (routeId: keyof typeof ROUTES_MAP, pathname: string) =>
-    pathname.includes(ROUTES_MAP[routeId].href);
+const SERVICE_NAME = 'Aigle';
+const SERVICE_TAGLINE = 'Détecter, cibler et agir contre les installations illégales';
+const MAIN_CONTENT_ID = 'contenu';
+const FOOTER_ID = 'footer';
 
-type ComponentProps = PropsWithChildren;
+const BRAND_TOP = (
+    <>
+        Ministère
+        <br />
+        de la Transition
+        <br />
+        écologique
+    </>
+);
 
-const Component: React.FC<ComponentProps> = ({ children }) => {
+const HEADER_ROUTES = (Object.keys(ROUTES_MAP) as RouteId[]).filter((routeId) => ROUTES_MAP[routeId].displayedInHeader);
+
+/**
+ * Le site utilise un routage en hash (`#/accueil`) : les ancres internes (`#video`, `#contenu`)
+ * doivent donc être interceptées pour faire défiler la page sans changer de route.
+ */
+const handleInPageAnchorClick = (event: MouseEvent) => {
+    const anchor = (event.target as HTMLElement | null)?.closest?.('a[href^="#"]');
+    if (!anchor) {
+        return;
+    }
+    const href = anchor.getAttribute('href') || '';
+    if (href.startsWith('#/') || href.length < 2) {
+        return;
+    }
+    const target = document.getElementById(decodeURIComponent(href.slice(1)));
+    if (!target) {
+        return;
+    }
+    event.preventDefault();
+    if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
+    }
+    target.scrollIntoView();
+    target.focus({ preventScroll: true });
+};
+
+type ComponentProps = PropsWithChildren<{
+    routeId: RouteId;
+}>;
+
+const Component: React.FC<ComponentProps> = ({ children, routeId }) => {
     const { pathname } = useLocation();
+
+    useEffect(() => {
+        document.title = `${ROUTES_MAP[routeId].title} | ${SERVICE_NAME}`;
+    }, [routeId]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    useEffect(() => {
+        document.addEventListener('click', handleInPageAnchorClick);
+        return () => document.removeEventListener('click', handleInPageAnchorClick);
+    }, []);
 
     return (
         <div className={classes.container}>
-            <Header
-                brandTop={
-                    <>
-                        Ministère
-                        <br />
-                        de la transition
-                        <br />
-                        écologique
-                    </>
-                }
-                quickAccessItems={[
-                    <Button
-                        iconId="fr-icon-account-circle-fill"
-                        priority="secondary"
-                        linkProps={{
-                            href: AIGLE_APP_URL,
-                        }}
-                    >
-                        Se connecter
-                    </Button>,
+            <SkipLinks
+                links={[
+                    { anchor: `#${MAIN_CONTENT_ID}`, label: 'Contenu' },
+                    { anchor: `#${FOOTER_ID}`, label: 'Pied de page' },
                 ]}
+            />
+            <Header
+                brandTop={BRAND_TOP}
                 serviceTitle={
                     <>
-                        Aigle
-                        <Badge as="span" noIcon severity="success">
+                        {SERVICE_NAME}{' '}
+                        <Badge as="span" noIcon severity="success" small>
                             Beta
                         </Badge>
                     </>
                 }
-                serviceTagline="Détection par IA des irrégularités d'occupation du sol"
+                serviceTagline={SERVICE_TAGLINE}
                 homeLinkProps={{
                     href: getHref('home'),
-                    title: 'Accueil - Aigle',
+                    title: `Accueil - ${SERVICE_NAME}`,
                 }}
-                navigation={Object.entries(ROUTES_MAP)
-                    .filter(([, { displayedInHeader }]) => displayedInHeader)
-                    .map(([routeId, { title, href, external }]) => ({
+                quickAccessItems={[
+                    {
+                        iconId: 'fr-icon-account-circle-line',
+                        text: 'Connexion',
                         linkProps: {
-                            href: external ? href : getHref(routeId),
-                            target: external ? '_blank' : '_self',
+                            href: AIGLE_APP_URL,
+                            target: '_blank',
+                            rel: 'noopener',
+                            title: 'Connexion à l’application Aigle – nouvelle fenêtre',
                         },
-                        isActive: isNavigationItemActive(routeId, pathname),
-                        text: title,
-                    }))}
+                    },
+                ]}
+                navigation={HEADER_ROUTES.map((headerRouteId) => {
+                    const route = ROUTES_MAP[headerRouteId];
+                    return {
+                        linkProps: { href: getHref(headerRouteId) },
+                        isActive: pathname === route.href,
+                        text: 'navTitle' in route ? route.navTitle : route.title,
+                    };
+                })}
             />
-            <div>{children}</div>
+            <main id={MAIN_CONTENT_ID} className={classes.main} tabIndex={-1}>
+                {children}
+            </main>
             <Footer
+                id={FOOTER_ID}
+                brandTop={BRAND_TOP}
+                homeLinkProps={{
+                    href: getHref('home'),
+                    title: `Accueil - ${SERVICE_NAME}`,
+                }}
                 accessibility="non compliant"
                 accessibilityLinkProps={{
                     href: getHref('accessibility'),
@@ -74,14 +133,17 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
                 termsLinkProps={{
                     href: getHref('legalMentions'),
                 }}
-                websiteMapLinkProps={{
-                    href: '#',
-                }}
                 bottomItems={[
                     {
-                        text: "Conditions générales d'utilisation",
+                        text: 'CGU',
                         linkProps: {
                             href: getHref('generalUseConditions'),
+                        },
+                    },
+                    {
+                        text: 'Données personnelles',
+                        linkProps: {
+                            href: getHref('personalData'),
                         },
                     },
                     headerFooterDisplayItem,

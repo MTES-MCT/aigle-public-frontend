@@ -12,7 +12,7 @@ const DECLARATION_GENERATOR_URL = 'https://betagouv.github.io/a11y-generateur-de
 
 const Component: React.FC = () => {
     return (
-        <Layout>
+        <Layout routeId="accessibility">
             <div className="fr-container">
                 <div className="legal-content">
                     <h1>Déclaration d’accessibilité</h1>

@@ -1,0 +1,16 @@
+.aigle-name {
+    display: block;
+    width: 100%;
+    max-width: 25rem;
+    height: auto;
+    margin: 0 auto;
+}
+
+// Logos sur fond blanc : PNG conçus pour un fond clair (lisibles aussi en mode sombre).
+.logo-card {
+    display: block;
+    max-width: 20rem;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: var(--background-default-grey);
+}

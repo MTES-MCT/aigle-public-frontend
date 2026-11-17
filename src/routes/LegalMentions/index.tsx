@@ -11,7 +11,7 @@ const TEAM_CONTACT_EMAIL = 'aigle@beta.gouv.fr';
 
 const Component: React.FC = () => {
     return (
-        <Layout>
+        <Layout routeId="legalMentions">
             <div className="fr-container">
                 <div className="legal-content">
                     <h1>Mentions légales du service numérique AIGLE</h1>

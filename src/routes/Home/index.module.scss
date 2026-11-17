@@ -1,111 +1,48 @@
-.sections-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.raw-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-    .text-section {
-        padding: 2rem 3rem;
-    }
-
-    .section-mission {
-        display: flex;
-        flex-direction: row;
-
-        .section-mission-left,
-        .section-mission-right {
-            width: 50%;
-
-            display: flex;
-            flex-direction: column;
-        }
-
-        .section-mission-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            .section-mission-mockups-label {
-                font-style: italic;
-                padding: 0 2rem;
-                text-align: center;
-            }
-
-            .section-mission-mockups {
-                width: 100%;
-            }
-        }
-
-        .section-mission-tags {
-            display: flex;
-            flex-wrap: wrap;
-
-            list-style-type: none;
-
-            gap: 0.5rem;
-            padding: 0;
-            margin: 0;
-
-            margin-bottom: 1.5rem;
-
-            .section-mission-tag-container {
-                padding: 0;
-
-                .section-mission-tag-icon {
-                    margin-right: 0.5rem;
-                }
-            }
-        }
-    }
-
-    .section-definition {
-        background-color: var(--background-open-blue-france);
-    }
-
-    .section-why {
-        .section-why-boxes-container {
-            display: flex;
-            flex-direction: row;
-
-            gap: 1rem;
-            margin: var(--text-spacing);
-
-            .section-why-box {
-                width: calc(100% / 3);
-                background-color: var(--background-alt-grey);
-            }
-        }
+    > li {
+        padding-bottom: 0;
     }
 }
 
-@media screen and (max-width: 1050px) {
-    .sections-container {
-        .text-section {
-            padding: 1rem 0;
-        }
+.aigle-lucca {
+    display: block;
+    max-width: 26rem;
+    margin: 0 auto;
+}
 
-        .section-definition {
-            padding: 1rem;
-        }
+.territory {
+    color: var(--text-title-blue-france);
+}
 
-        .section-mission {
-            flex-direction: column;
+// Logo sur fond blanc fixe : l’image est un PNG à fond transparent conçu pour un fond clair.
+.logo-card {
+    display: block;
+    max-width: 26rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: var(--background-default-grey);
+}
 
-            .section-mission-left,
-            .section-mission-right {
-                width: 100%;
-            }
-        }
+.tile {
+    height: 100%;
+}
 
-        .section-why {
-            .section-why-boxes-container {
-                flex-direction: column;
+.centered {
+    text-align: center;
+}
 
-                .section-why-box {
-                    padding: 1rem;
-                    width: 100%;
-                }
-            }
-        }
+/* Séparateur vertical entre le texte « 2 outils numériques… » et les logos (empilés sur mobile : séparateur horizontal). */
+.separated-column {
+    border-top: 1px solid var(--border-default-grey);
+    padding-top: 1.5rem;
+
+    @media (min-width: 48em) {
+        border-top: 0;
+        border-left: 1px solid var(--border-default-grey);
+        padding-top: 0;
     }
 }

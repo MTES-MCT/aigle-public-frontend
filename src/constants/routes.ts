@@ -1,50 +1,71 @@
 export interface RouteDisplayedInHeader {
     href: string;
     title: string;
-    external?: boolean;
+    navTitle: string;
     displayedInHeader: true;
 }
 
 export interface RouteNotDisplayedInHeader {
     href: string;
-    title?: string;
-    external?: boolean;
+    title: string;
     displayedInHeader: false;
 }
 
 type Route = RouteDisplayedInHeader | RouteNotDisplayedInHeader;
 
-export const ROUTES_MAP: {
-    [id: string]: Route;
-} = {
+export const ROUTES_MAP = {
     home: {
         href: '/accueil',
         title: 'Accueil',
+        navTitle: 'Accueil',
         displayedInHeader: true,
     },
-    generalUseConditions: {
-        href: '/cgu',
-        displayedInHeader: false,
+    collectivities: {
+        href: '/collectivites',
+        title: 'Collectivités : Utiliser Aigle sur mon territoire',
+        navTitle: 'Collectivités - Utiliser Aigle sur mon territoire',
+        displayedInHeader: true,
     },
-    legalMentions: {
-        href: '/mentions-legales',
-        displayedInHeader: false,
-    },
-    accessibility: {
-        href: '/accessibilite',
-        displayedInHeader: false,
+    stateServices: {
+        href: '/services-etat',
+        title: 'Services de l’État : Déployer Aigle dans un département',
+        navTitle: 'Services de l’État - Déployer Aigle dans un département',
+        displayedInHeader: true,
     },
     about: {
-        href: 'https://beta.gouv.fr/startups/aigle.html',
-        title: 'A propos',
-        external: true,
+        href: '/a-propos',
+        title: 'À propos',
+        navTitle: 'À propos',
         displayedInHeader: true,
     },
     contact: {
         href: '/contact',
         title: 'Nous contacter',
+        navTitle: 'Contact',
         displayedInHeader: true,
     },
-} as const;
+    generalUseConditions: {
+        href: '/cgu',
+        title: 'Conditions générales d’utilisation',
+        displayedInHeader: false,
+    },
+    legalMentions: {
+        href: '/mentions-legales',
+        title: 'Mentions légales',
+        displayedInHeader: false,
+    },
+    accessibility: {
+        href: '/accessibilite',
+        title: 'Déclaration d’accessibilité',
+        displayedInHeader: false,
+    },
+    personalData: {
+        href: '/donnees-personnelles',
+        title: 'Données personnelles',
+        displayedInHeader: false,
+    },
+} as const satisfies Record<string, Route>;
 
-export const getHref = (routeId: keyof typeof ROUTES_MAP) => `/#${ROUTES_MAP[routeId].href}`;
+export type RouteId = keyof typeof ROUTES_MAP;
+
+export const getHref = (routeId: RouteId) => `/#${ROUTES_MAP[routeId].href}`;

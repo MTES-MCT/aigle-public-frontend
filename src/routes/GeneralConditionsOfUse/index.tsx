@@ -6,7 +6,7 @@ import { AIGLE_APP_URL } from '../../constants/urls';
 
 const Component: React.FC = () => {
     return (
-        <Layout>
+        <Layout routeId="generalUseConditions">
             <div className="fr-container">
                 <div className="legal-content">
                     <h1>Conditions Générales d'Utilisation (CGU) du service numérique AIGLE</h1>

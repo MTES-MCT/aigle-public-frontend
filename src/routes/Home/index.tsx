@@ -1,177 +1,259 @@
-import mockupsImg from '@/assets/mockups.png';
-import Badge from '@codegouvfr/react-dsfr/Badge';
-import { Button } from '@codegouvfr/react-dsfr/Button';
-import clsx from 'clsx';
 import React from 'react';
+
+import { fr } from '@codegouvfr/react-dsfr';
+import { Tile } from '@codegouvfr/react-dsfr/Tile';
+import CityHall from '@codegouvfr/react-dsfr/picto/CityHall';
+import DataVisualization from '@codegouvfr/react-dsfr/picto/DataVisualization';
+import Environment from '@codegouvfr/react-dsfr/picto/Environment';
+import Firefighter from '@codegouvfr/react-dsfr/picto/Firefighter';
+import JusticeScales from '@codegouvfr/react-dsfr/picto/JusticeScales';
+import LocationFrance from '@codegouvfr/react-dsfr/picto/LocationFrance';
+import MapPin from '@codegouvfr/react-dsfr/picto/MapPin';
+import Money from '@codegouvfr/react-dsfr/picto/Money';
+import Notification from '@codegouvfr/react-dsfr/picto/Notification';
+import clsx from 'clsx';
+import { ContactButton, ExternalButton, MultilineTitle, PictoTiles, Picture, Section } from '../../components/Blocks';
 import Layout from '../../components/Layout';
+import { LUCCA_URL } from '../../constants/content';
+import { IMAGES } from '../../constants/images';
 import { getHref } from '../../constants/routes';
 import classes from './index.module.scss';
 
-const CONTACT_HREF_DEMO = `${getHref('contact')}?reason=DEMO`;
+const PICTO_SIZE = '80px';
+
+const SERVICE_ITEMS = [
+    {
+        pictogram: <DataVisualization fontSize={PICTO_SIZE} />,
+        title: 'Connaître l’ampleur du problème',
+        desc: 'La détection automatique localise et quantifie les parcelles détournées, et mesure leur évolution.',
+    },
+    {
+        pictogram: <MapPin fontSize={PICTO_SIZE} />,
+        title: 'Prioriser et cibler les contrôles',
+        desc: 'Croisez les détections avec les enjeux du territoire : zones inondables, risque incendie, espaces naturels remarquables, captages d’eau potable.',
+    },
+    {
+        pictogram: <Notification fontSize={PICTO_SIZE} />,
+        title: 'Agir et suivre l’évolution',
+        desc: 'Lancez la procédure et suivez les statistiques de votre territoire pour piloter votre action.',
+    },
+];
+
+const WHY_ITEMS = [
+    {
+        pictogram: <Firefighter fontSize={PICTO_SIZE} />,
+        title: 'Sécurité',
+        desc: 'Des personnes exposées aux inondations et aux feux de forêt, sans accès possible pour les secours.',
+    },
+    {
+        pictogram: <Environment fontSize={PICTO_SIZE} />,
+        title: 'Environnement',
+        desc: 'Des espaces et paysages dégradés, des eaux usées non traitées, des terres agricoles détournées, des risques d’incendie accrus.',
+    },
+    {
+        pictogram: <JusticeScales fontSize={PICTO_SIZE} />,
+        title: 'Équité',
+        desc: 'Un sentiment d’impunité chez les contrevenants, une inégalité entre administrés.',
+    },
+    {
+        pictogram: <Money fontSize={PICTO_SIZE} />,
+        title: 'Coût',
+        desc: 'Une augmentation de la spéculation foncière, et des décisions de justice longues et coûteuses.',
+    },
+];
+
+const TERRITORIES = [
+    {
+        name: 'Vic-la-Gardiole, Hérault (34)',
+        detected: 209,
+        controls: 26,
+        reports: 24,
+        restorations: 10,
+    },
+    {
+        name: 'Marseillan, Hérault (34)',
+        detected: 500,
+        controls: 148,
+        reports: 143,
+        restorations: 20,
+    },
+];
 
 const Component: React.FC = () => {
     return (
-        <Layout>
-            <div className="fr-container">
-                <div className={classes['sections-container']}>
-                    <section className={classes['section-mission']}>
-                        <section className={clsx(classes['text-section'], classes['section-mission-left'])}>
-                            <h1 className={classes['section-mission-text']}>
-                                Facilitez le repérage des constructions et installations illégales dans les espaces
-                                agricoles et naturels
-                            </h1>
-                            <ul className={classes['section-mission-tags']}>
-                                <li className={classes['section-mission-tag-container']}>
-                                    <Badge severity="info" noIcon>
-                                        <span className={classes['section-mission-tag-icon']}>🤖</span> Intelligence
-                                        artificielle
-                                    </Badge>
-                                </li>
-                                <li className={classes['section-mission-tag-container']}>
-                                    <Badge severity="info" noIcon>
-                                        <span className={classes['section-mission-tag-icon']}>🏚️</span> Détournement
-                                        d'usage
-                                    </Badge>
-                                </li>
-                                <li className={classes['section-mission-tag-container']}>
-                                    <Badge severity="info" noIcon>
-                                        <span className={classes['section-mission-tag-icon']}>🛖</span> Cabanisation
-                                    </Badge>
-                                </li>
-                                <li className={classes['section-mission-tag-container']}>
-                                    <Badge severity="info" noIcon>
-                                        <span className={classes['section-mission-tag-icon']}>🌳</span> Atteinte à
-                                        l'environnement
-                                    </Badge>
-                                </li>
-                                <li className={classes['section-mission-tag-container']}>
-                                    <Badge severity="info" noIcon>
-                                        <span className={classes['section-mission-tag-icon']}>🔥</span> Inondations et
-                                        feux de forêt
-                                    </Badge>
-                                </li>
-                            </ul>
-                            <p className={classes['section-mission-text']}>
-                                AIGLE aide les collectivités et les services de l'État à cibler, prioriser et renforcer
-                                leur action de lutte contre les parcelles occupées illégalement.
-                            </p>
-
-                            <Button
-                                linkProps={{
-                                    href: CONTACT_HREF_DEMO,
-                                }}
-                            >
-                                Demander une démo
-                            </Button>
-                        </section>
-                        <section className={classes['section-mission-right']}>
-                            <img
-                                className={classes['section-mission-mockups']}
-                                src={mockupsImg}
-                                alt="Maquettes de l'application Aigle"
-                            />
-                            <p className={classes['section-mission-mockups-label']}>
-                                Accessible au bureau comme sur le terrain, AIGLE propose une carte interactive pour
-                                détecter automatiquement constructions, piscines, mobil-homes, caravanes et bateaux.
-                            </p>
-                        </section>
-                    </section>
-                    <section className={clsx(classes['text-section'], classes['section-definition'])}>
+        <Layout routeId="home">
+            {/* Bloc 1 */}
+            <Section>
+                <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-grid-row--middle')}>
+                    <div className={fr.cx('fr-col-12', 'fr-col-lg-6')}>
                         <h1>
-                            Qu'appelle-t-on constructions/installations illégales, cabanisation ou détournements d'usage
-                            ?
+                            Détecter, cibler et agir contre les installations illégales sur les territoires naturels
+                            &amp; agricoles
                         </h1>
-                        <p>
-                            C'est l'implantation sans autorisation de constructions ou d'installations diverses
-                            (maisons, bâtis, caravanes, mobil-homes, chalets, yourtes…) occupées épisodiquement ou de
-                            façon permanente à des fins d'habitat ou de commerce, dans des zones inconstructibles,
-                            agricoles ou naturelles et le plus souvent en zone à risque inondation ou feux de forêt.
+                        <p className={fr.cx('fr-text--lead')}>
+                            Aigle accompagne les collectivités et les services de l’État à repérer, prioriser et suivre
+                            les installations illégales dans les espaces naturels, agricoles et forestiers, grâce à
+                            l’imagerie aérienne et à l’intelligence artificielle.
                         </p>
-
-                        <h1>Pourquoi est-il important de se mobiliser pour lutter contre ?</h1>
-                        <p>
-                            Outre le fait qu'elle constitue un délit, la cabanisation a de nombreuses conséquences
-                            néfastes :
-                        </p>
-                        <ul>
-                            <li>
-                                Elle <span className="bold">expose les personnes aux risques</span> d'inondation et de
-                                feux de forêts, sans possibilité d'intervention des secours (accès difficile, habitation
-                                non légale et par conséquent non connue).
-                            </li>
-                            <li>
-                                Elle <span className="bold">dégrade les espaces naturels</span>, agricoles ou forestiers
-                                ainsi que les paysages et favorise la pollution des sols et de l'eau (déversement d'eaux
-                                usées, absence de collecte de déchets…).
-                            </li>
-                            <li>
-                                Elle entraîne le <span className="bold">gaspillage des terres agricoles</span>{' '}
-                                (pollution, pression foncière, mitage…) et réduit les capacités de production.
-                            </li>
-                            <li>
-                                Elle peut engendrer des <span className="bold">départs de feux</span> et entraîner des
-                                dégâts considérables.
-                            </li>
-                            <li>
-                                Elle contribue au <span className="bold">sentiment d'impunité</span> et d'iniquité entre
-                                citoyens, face à la loi et provoque des tensions entre agents de collectivités ou élus
-                                et administrés
-                            </li>
-                            <li>
-                                Elle <span className="bold">coûte très cher</span>, en mobilisant de nombreux acteurs
-                                (la DDTM, la DDFIP, les forces de l'ordre, les parquets, les collectivités). Les
-                                procédures judiciaires sont longues de plusieurs années, complexes avec une issue
-                                incertaine. Des moyens humains et financiers considérables sont ainsi engagés pour une
-                                seule affaire.
-                            </li>
-                        </ul>
-
-                        {/* <Button onClick={() => {}}>Plus d'info</Button> */}
-                    </section>
-
-                    <section className={clsx(classes['text-section'], classes['section-why'])}>
-                        <h1>Pourquoi utiliser Aigle ?</h1>
-                        <p>Aigle permet aux collectivités et aux services de l'État de : </p>
-
-                        <div className={classes['section-why-boxes-container']}>
-                            <section className={clsx(classes['text-section'], classes['section-why-box'])}>
-                                <h2>🔎 Connaître l'ampleur du phénomène</h2>
-                                <p className={classes['section-why-box-text']}>
-                                    Grâce à la détection automatique des parcelles détournées, AIGLE permet de
-                                    quantifier, qualifier et localiser le phénomène sur un territoire donné et d'en
-                                    mesurer l'évolution.
-                                </p>
-                            </section>
-                            <section className={clsx(classes['text-section'], classes['section-why-box'])}>
-                                <h2>☝️ Prioriser et cibler les actions en fonction des enjeux</h2>
-                                <p className={classes['section-why-box-text']}>
-                                    La connaissance du problème croisée aux enjeux notamment du territoire (zones
-                                    inondables, à risque d'incendie de forêt, naturelles remarquables, périmètres de
-                                    captage d'eau potable, en expansion, etc.) permet de définir une stratégie
-                                    d'intervention et d'être plus efficace en terme de contrôle et de remise en état.
-                                </p>
-                            </section>
-                            <section className={clsx(classes['text-section'], classes['section-why-box'])}>
-                                <h2>👮‍♂️ D'être plus efficace dès les premiers signaux et de mieux prévenir</h2>
-                                <p className={classes['section-why-box-text']}>
-                                    Surveiller de manière générale permet d'intervenir au plus tôt dès les premiers
-                                    signaux et de favoriser pour les situations encore simples la remise en état. AIGLE
-                                    est un également un outil de communication pour mieux prévenir et on imagine
-                                    favoriser la dissuasion.
-                                </p>
-                            </section>
-                        </div>
-
-                        <Button
-                            linkProps={{
-                                href: CONTACT_HREF_DEMO,
-                            }}
-                        >
-                            Demander une démo
-                        </Button>
-                    </section>
+                        <ContactButton label="Nous contacter" />
+                    </div>
+                    <div className={fr.cx('fr-col-12', 'fr-col-lg-6')}>
+                        <Picture
+                            image={IMAGES.mockups}
+                            alt="Maquettes de l’application Aigle sur ordinateur, tablette et smartphone"
+                            eager
+                        />
+                    </div>
                 </div>
-            </div>
+            </Section>
+
+            {/* Bloc 2 */}
+            <Section>
+                <h2>
+                    <MultilineTitle
+                        lines={[
+                            'Un service public pour détecter & cibler les installations illégales',
+                            'sur les territoires naturels, agricoles et forestiers',
+                        ]}
+                    />
+                </h2>
+                <PictoTiles items={SERVICE_ITEMS} columnClassName={fr.cx('fr-col-12', 'fr-col-md-4')} />
+            </Section>
+
+            {/* Bloc 3 */}
+            <Section background="blue">
+                <h2 className={classes.centered}>Aigle accompagne les collectivités &amp; services de l’État</h2>
+                <ul className={clsx(fr.cx('fr-grid-row', 'fr-grid-row--gutters'), classes['raw-list'])}>
+                    <li className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+                        <Tile
+                            className={classes.tile}
+                            orientation="horizontal"
+                            titleAs="h3"
+                            title="Utiliser Aigle à l’échelle d’un territoire"
+                            desc="Vous représentez une collectivité : commune ou EPCI"
+                            pictogram={<CityHall fontSize={PICTO_SIZE} />}
+                            linkProps={{ href: getHref('collectivities') }}
+                            enlargeLinkOrButton
+                        />
+                    </li>
+                    <li className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+                        <Tile
+                            className={classes.tile}
+                            orientation="horizontal"
+                            titleAs="h3"
+                            title="Déployer Aigle dans un département"
+                            desc="Vous représentez un service de l’État : DDT, DDTM, DEAL"
+                            pictogram={<LocationFrance fontSize={PICTO_SIZE} />}
+                            linkProps={{ href: getHref('stateServices') }}
+                            enlargeLinkOrButton
+                        />
+                    </li>
+                </ul>
+            </Section>
+
+            {/* Bloc 4 */}
+            <Section>
+                <h2 className={classes.centered}>Pourquoi agir contre les installations illégales ?</h2>
+                <PictoTiles items={WHY_ITEMS} columnClassName={fr.cx('fr-col-12', 'fr-col-sm-6', 'fr-col-lg-3')} />
+            </Section>
+
+            {/* Bloc 5 */}
+            <Section>
+                <h2 className={classes.centered}>Aigle, un outil complémentaire à Lucca</h2>
+                <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-grid-row--middle')}>
+                    <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+                        <h3>2 outils numériques pour lutter contre les constructions &amp; installations illégales</h3>
+                        <p>
+                            Notre équipe travaille sur une large mission : la{' '}
+                            <strong>préservation des espaces naturels et agricoles</strong>.
+                            <br />
+                            Nous déployons notre action à travers{' '}
+                            <strong>
+                                2 outils numériques pour lutter contre les constructions &amp; installations illégales
+                            </strong>
+                            , de la détection aux procédures.
+                        </p>
+                    </div>
+                    <div className={clsx(fr.cx('fr-col-12', 'fr-col-md-6'), classes['separated-column'])}>
+                        <Picture
+                            image={IMAGES.aigleLucca}
+                            alt="Logos Aigle, détecter et cibler, et Lucca, faciliter les procédures"
+                            className={classes['aigle-lucca']}
+                        />
+                    </div>
+                </div>
+                <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-mt-4w')}>
+                    <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+                        <figure className={fr.cx('fr-content-media', 'fr-my-0')} role="group">
+                            <Picture
+                                className={fr.cx('fr-ratio-1x1')}
+                                image={IMAGES.localisation}
+                                alt="Carte des départements utilisant Lucca et Aigle, Aigle uniquement ou Lucca uniquement"
+                            />
+                            <figcaption className={fr.cx('fr-content-media__caption')}>
+                                Territoires utilisateurs d’Aigle &amp; Lucca
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+                        <h3>Ils utilisent Aigle &amp; Lucca</h3>
+                        {TERRITORIES.map((territory) => (
+                            <div key={territory.name} className={fr.cx('fr-mb-3w')}>
+                                <p
+                                    className={clsx(
+                                        fr.cx('fr-text--lg', 'fr-text--bold', 'fr-mb-1w'),
+                                        classes.territory,
+                                    )}
+                                >
+                                    {territory.name}
+                                </p>
+                                <p className={fr.cx('fr-mb-0')}>
+                                    {territory.detected} parcelles ayant une installation illégale détectées sur{' '}
+                                    <strong>Aigle</strong>
+                                    <br />
+                                    {territory.controls} contrôles conduits avec <strong>Lucca</strong>
+                                    <br />
+                                    {territory.reports} PV dressés avec <strong>Lucca</strong>
+                                    <br />À date, {territory.restorations} remises en état des espaces naturels &amp;
+                                    agricoles
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* Bloc 6 */}
+            <Section>
+                <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-grid-row--middle')}>
+                    <div className={fr.cx('fr-col-12', 'fr-col-md-7')}>
+                        <h2 className={fr.cx('fr-mb-2w')}>Découvrir Lucca</h2>
+                        <p>
+                            Un outil complémentaire à Aigle pour faciliter, automatiser et sécuriser les procédures
+                            d’infraction au code de l’urbanisme : rédaction guidée des PV, courriers pré-remplis, suivi
+                            des dossiers jusqu’à la remise en état.
+                        </p>
+                        <ExternalButton label="Découvrir Lucca" href={LUCCA_URL} priority="secondary" />
+                    </div>
+                    <div className={fr.cx('fr-col-12', 'fr-col-md-5')}>
+                        <Picture
+                            image={IMAGES.luccaLogo}
+                            alt="Lucca, faciliter les procédures"
+                            className={classes['logo-card']}
+                        />
+                    </div>
+                </div>
+            </Section>
+
+            {/* Bloc 7 */}
+            <Section background="blue">
+                <h2 className={fr.cx('fr-mb-2w')}>Échangeons ensemble</h2>
+                <p>
+                    Vous souhaitez savoir si cela pourrait vous être utile ou comment mettre en place Aigle ou Lucca sur
+                    votre territoire ?
+                </p>
+                <ContactButton label="Nous contacter pour découvrir Aigle & Lucca" />
+            </Section>
         </Layout>
     );
 };

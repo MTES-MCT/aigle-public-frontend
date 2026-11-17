@@ -1,0 +1,251 @@
+/* Mise en page des blocs : uniquement des tokens DSFR (var(--…)) pour les couleurs. */
+
+.section {
+    padding: 3rem 0;
+
+    @media (min-width: 48em) {
+        padding: 3.5rem 0;
+    }
+
+    h2 {
+        margin-bottom: 2rem;
+    }
+}
+
+.section-blue {
+    background-color: var(--background-alt-blue-france);
+}
+
+.raw-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+        padding-bottom: 0;
+    }
+}
+
+.desktop-only-break {
+    display: none;
+
+    @media (min-width: 62em) {
+        display: inline;
+    }
+}
+
+/* ----- Bannière : texte à gauche, illustration sans fond à droite (sous le texte sur mobile) */
+
+.banner {
+    padding: 2.5rem 0;
+    background-color: var(--background-alt-blue-france);
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+}
+
+.banner-illustration {
+    display: block;
+    width: 100%;
+    max-width: 44rem;
+    height: auto;
+    margin: 0 auto;
+}
+
+.banner-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.breadcrumb {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ----- Tuiles : même hauteur dans une ligne */
+
+.tile {
+    height: 100%;
+}
+
+/* ----- Fonctionnalités : capture + liste */
+
+/* Images : toujours dans leur ratio d’origine (pas de recadrage ni d’étirement). */
+.picture {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.screenshot {
+    border: 1px solid var(--border-default-grey);
+    box-shadow: var(--raised-shadow);
+}
+
+.feature-list > li + li {
+    margin-top: 1.5rem;
+}
+
+.feature-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    color: var(--text-inverted-blue-france);
+    background-color: var(--background-action-high-blue-france);
+}
+
+.order-lg-last {
+    @media (min-width: 62em) {
+        order: 2;
+    }
+}
+
+/* ----- Vidéo */
+
+.video-figure {
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 56rem;
+}
+
+.video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--border-default-grey);
+    color: var(--text-mention-grey);
+    background-color: var(--background-default-grey);
+}
+
+/* ----- Chiffres clés */
+
+.key-figure-value {
+    color: var(--text-title-blue-france);
+}
+
+/* ----- Répartition des utilisateurs */
+
+.distribution {
+    margin-bottom: 2.5rem;
+}
+
+.distribution-bar {
+    display: flex;
+    min-height: 3rem;
+    font-weight: 700;
+}
+
+.distribution-collectivities {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    color: var(--text-inverted-blue-france);
+    background-color: var(--background-action-high-blue-france);
+}
+
+.distribution-ddt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-title-grey);
+    background-color: var(--blue-france-850-200);
+}
+
+.distribution-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-mention-grey);
+}
+
+.legend-swatch {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+}
+
+/* ----- Étapes */
+
+.step {
+    display: flex;
+    flex-direction: column;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    color: var(--text-inverted-blue-france);
+    background-color: var(--background-action-high-blue-france);
+}
+
+/* ----- Témoignages : citations alignées en haut, auteurs alignés entre eux */
+
+.testimonial-col {
+    display: flex;
+}
+
+figure.testimonial {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+
+    > blockquote {
+        flex-grow: 1;
+    }
+
+    /* Même hauteur de légende avec ou sans source : les auteurs restent alignés. */
+    > figcaption {
+        justify-content: flex-start;
+        min-height: 10rem;
+    }
+}
+
+/* Dans une grille à 3 colonnes, l’avatar se place avec l’auteur, sous la citation. */
+div.testimonial-image {
+    position: static;
+    order: -1;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 0 1rem;
+}
+
+.testimonial-text {
+    font-weight: 400;
+}
+
+/* ----- Image + texte */
+
+.order-md-last {
+    @media (min-width: 48em) {
+        order: 2;
+    }
+}
