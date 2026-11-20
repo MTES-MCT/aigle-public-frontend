@@ -6,7 +6,8 @@ import { Footer } from '@codegouvfr/react-dsfr/Footer';
 import { Header } from '@codegouvfr/react-dsfr/Header';
 import { SkipLinks } from '@codegouvfr/react-dsfr/SkipLinks';
 import { useLocation } from 'react-router-dom';
-import { getHref, RouteId, ROUTES_MAP } from '../../constants/routes';
+import { AIGLE_LOGO_SVG } from '../../constants/images';
+import { CONTACT_HREF, getHref, RouteId, ROUTES_MAP } from '../../constants/routes';
 import { AIGLE_APP_URL } from '../../constants/urls';
 import classes from './index.module.scss';
 
@@ -17,13 +18,20 @@ const FOOTER_ID = 'footer';
 
 const BRAND_TOP = (
     <>
-        Ministère
+        Ministères
         <br />
-        de la Transition
+        Transition écologique
         <br />
-        écologique
+        Aménagement du territoire
+        <br />
+        Transports
+        <br />
+        Ville et logement
     </>
 );
+
+/** Logo opérateur (comme sur le site de Lucca) : pictogramme Aigle, à côté du bloc-marque. */
+const OPERATOR_LOGO = { orientation: 'vertical', imgUrl: AIGLE_LOGO_SVG, alt: 'Aigle' } as const;
 
 const HEADER_ROUTES = (Object.keys(ROUTES_MAP) as RouteId[]).filter((routeId) => ROUTES_MAP[routeId].displayedInHeader);
 
@@ -82,6 +90,7 @@ const Component: React.FC<ComponentProps> = ({ children, routeId }) => {
             />
             <Header
                 brandTop={BRAND_TOP}
+                operatorLogo={OPERATOR_LOGO}
                 serviceTitle={
                     <>
                         {SERVICE_NAME}{' '}
@@ -110,7 +119,7 @@ const Component: React.FC<ComponentProps> = ({ children, routeId }) => {
                 navigation={HEADER_ROUTES.map((headerRouteId) => {
                     const route = ROUTES_MAP[headerRouteId];
                     return {
-                        linkProps: { href: getHref(headerRouteId) },
+                        linkProps: { href: headerRouteId === 'contact' ? CONTACT_HREF : getHref(headerRouteId) },
                         isActive: pathname === route.href,
                         text: 'navTitle' in route ? route.navTitle : route.title,
                     };
@@ -122,6 +131,7 @@ const Component: React.FC<ComponentProps> = ({ children, routeId }) => {
             <Footer
                 id={FOOTER_ID}
                 brandTop={BRAND_TOP}
+                operatorLogo={OPERATOR_LOGO}
                 homeLinkProps={{
                     href: getHref('home'),
                     title: `Accueil - ${SERVICE_NAME}`,

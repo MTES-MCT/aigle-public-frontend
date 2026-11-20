@@ -3,6 +3,7 @@ import React from 'react';
 import { fr } from '@codegouvfr/react-dsfr';
 import { Banner, BannerButtons, ContactButton, ExternalButton, Picture, Section } from '../../components/Blocks';
 import Layout from '../../components/Layout';
+import { CONTACT_EMAIL } from '../../constants/contact';
 import { BETA_GOUV_URL } from '../../constants/content';
 import { ILLUSTRATIONS, IMAGES } from '../../constants/images';
 import { ROUTES_MAP } from '../../constants/routes';
@@ -99,9 +100,12 @@ const Component: React.FC = () => {
             </Section>
 
             {/* Bloc 6 */}
-            <Section background="blue">
+            <Section background="blue" className={classes.centered}>
                 <h2>Contacter l’équipe</h2>
-                <ContactButton label="Effectuer une demande d’information" />
+                <ContactButton label="Contacter l’équipe" />
+                <p className={fr.cx('fr-mt-3w', 'fr-mb-0')}>
+                    <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                </p>
             </Section>
         </Layout>
     );

@@ -19,8 +19,8 @@ import captureStatutsControleWebp from '@/assets/visuels/capture-statuts-control
 import illustrationAProposSvg from '@/assets/visuels/illustration-a-propos.svg';
 import illustrationCollectivitesSvg from '@/assets/visuels/illustration-collectivites.svg';
 import illustrationEtatSvg from '@/assets/visuels/illustration-etat.svg';
-import localisationPng from '@/assets/visuels/localisation.png';
-import localisationWebp from '@/assets/visuels/localisation.webp';
+import localisationPng from '@/assets/visuels/localisation-titre.png';
+import localisationWebp from '@/assets/visuels/localisation-titre.webp';
 import luccaLogoPng from '@/assets/visuels/lucca-logo.png';
 import luccaLogoWebp from '@/assets/visuels/lucca-logo.webp';
 import mockupsPng from '@/assets/visuels/mockups.png';
@@ -28,6 +28,7 @@ import mockupsWebp from '@/assets/visuels/mockups.webp';
 import partenairesPng from '@/assets/visuels/partenaires.png';
 import partenairesWebp from '@/assets/visuels/partenaires.webp';
 
+export { default as AIGLE_LOGO_SVG } from '@/assets/visuels/aigle-logo.svg';
 export { default as AIGLE_NOM_SVG } from '@/assets/visuels/aigle-nom.svg';
 
 /** Illustrations sans fond des bannières (à droite du titre). */
@@ -57,7 +58,7 @@ export const IMAGES = {
     mockups: { webp: mockupsWebp, fallback: mockupsPng, width: 1200, height: 735 },
     aigleLucca: { webp: aigleLuccaWebp, fallback: aigleLuccaPng, width: 900, height: 900 },
     betagouv: { webp: betagouvWebp, fallback: betagouvPng, width: 600, height: 327 },
-    localisation: { webp: localisationWebp, fallback: localisationPng, width: 1100, height: 1100 },
+    localisation: { webp: localisationWebp, fallback: localisationPng, width: 1078, height: 1100 },
     luccaLogo: { webp: luccaLogoWebp, fallback: luccaLogoPng, width: 700, height: 204 },
     partenaires: { webp: partenairesWebp, fallback: partenairesPng, width: 800, height: 659 },
 } satisfies Record<string, ImageSources>;

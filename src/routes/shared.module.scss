@@ -14,3 +14,13 @@
     padding: 1rem;
     background-color: var(--background-default-grey);
 }
+
+.centered-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.centered {
+    text-align: center;
+}

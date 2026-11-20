@@ -2,7 +2,6 @@ import React from 'react';
 
 import { fr } from '@codegouvfr/react-dsfr';
 import Community from '@codegouvfr/react-dsfr/picto/Community';
-import DataVisualization from '@codegouvfr/react-dsfr/picto/DataVisualization';
 import DocumentAdd from '@codegouvfr/react-dsfr/picto/DocumentAdd';
 import MapPicto from '@codegouvfr/react-dsfr/picto/Map';
 import MapPin from '@codegouvfr/react-dsfr/picto/MapPin';
@@ -18,11 +17,8 @@ import {
     MultilineTitle,
     PictoTiles,
     Section,
-    Steps,
+    StepsAccordion,
     Testimonials,
-    VIDEO_SECTION_ID,
-    VideoButton,
-    VideoPlaceholder,
 } from '../../components/Blocks';
 import Layout from '../../components/Layout';
 import { AIGLE_NOM_SVG, AVATARS, ILLUSTRATIONS, IMAGES } from '../../constants/images';
@@ -34,70 +30,84 @@ const PICTO_SIZE = '80px';
 const BENEFITS = [
     {
         pictogram: <MapPicto fontSize={PICTO_SIZE} />,
-        title: 'Détection des installations illégales',
-        desc: 'Repérez les écarts entre les registres et le terrain, sans repérage sur Google Earth ni visites sur des terrains difficiles d’accès.',
+        title: 'Gagner du temps sur le repérage',
+        desc: 'Fini les heures sur Google Earth et les visites sur des terrains difficiles d’accès : les installations illégales de votre territoire viennent à vous.',
     },
     {
         pictogram: <MapPin fontSize={PICTO_SIZE} />,
-        title: 'Contrôles ciblés & priorisés',
-        desc: 'Priorisez les zones les plus à risque, repérez celles bientôt prescrites et construisez votre plan de contrôle facilement.',
+        title: 'Agir là où c’est prioritaire',
+        desc: 'Concentrez vos moyens sur les zones à risque pour les habitants et l’environnement, et intervenez avant la prescription.',
     },
     {
         pictogram: <DocumentAdd fontSize={PICTO_SIZE} />,
-        title: 'Intégration de preuves dans les procédures',
-        desc: 'Obtenez des photos aériennes à intégrer aux documents administratifs, tels que les PV.',
-    },
-    {
-        pictogram: <DataVisualization fontSize={PICTO_SIZE} />,
-        title: 'Suivi et statistiques des installations',
-        desc: 'Suivez la part de parcelles détournées et leur évolution, et partagez les cartes du territoire avec les élus ou le préfet.',
+        title: 'Sécuriser vos procédures',
+        desc: 'Appuyez vos courriers et vos PV sur des preuves aériennes datées, pour des procédures plus solides.',
     },
     {
         pictogram: <Community fontSize={PICTO_SIZE} />,
-        title: 'Diminution des récidives',
-        desc: 'Intégrez les installations illégales à votre Plan Communal de Sauvegarde et communiquez auprès de vos habitants sur le contrôle par vue aérienne.',
+        title: 'Prévenir les récidives',
+        desc: 'Montrez que le territoire est surveillé, rendez compte aux élus et dissuadez les nouvelles installations.',
     },
 ];
 
 const FEATURES: FeatureItem[] = [
     {
         iconId: 'fr-icon-road-map-line',
-        title: 'Détecter les installations illégales',
+        title: 'Détectez les installations illégales',
         desc: "Grâce à l'utilisation de l'IA sur les images aériennes : constructions, piscines, mobil-homes, caravanes et bateaux.",
     },
     {
         iconId: 'fr-icon-filter-line',
-        title: 'Filtrer selon les enjeux de la parcelle',
-        desc: 'Selon leurs enjeux, sans jongler entre Géoportail, le cadastre, le PLU(i) et SITADEL.',
+        title: 'Filtrez selon les enjeux de la parcelle',
+        desc: 'Sans jongler entre Géoportail, le cadastre, le PLU(i) et SITADEL.',
     },
     {
         iconId: 'fr-icon-calendar-todo-line',
-        title: 'Définir son plan de contrôle',
-        desc: 'Prioriser les contrôles à effectuer selon les zones à enjeux et les risques de récidives.',
+        title: 'Définissez votre plan de contrôle',
+        desc: 'Priorisez les contrôles à effectuer selon les zones à enjeux et les risques de récidives.',
     },
     {
         iconId: 'fr-icon-download-line',
-        title: <MultilineTitle lines={['Exporter les photos aériennes', '& données']} />,
+        title: <MultilineTitle lines={['Exportez les photos aériennes', '& données']} />,
         desc: 'À joindre aux documents administratifs ou à exporter vers votre SIG.',
     },
     {
         iconId: 'fr-icon-file-text-line',
-        title: 'Lancer les procédures',
-        desc: 'Compléter le courrier préalable à la visite pré-rempli depuis Aigle puis poursuivre la procédure dans Lucca sans double saisie.',
+        title: 'Lancez les procédures',
+        desc: 'Complétez le courrier préalable à la visite pré-rempli depuis Aigle, puis poursuivez la procédure dans Lucca sans double saisie.',
     },
     {
         iconId: 'fr-icon-time-line',
-        title: 'Suivre l’historique d’une parcelle',
+        title: 'Suivez l’historique d’une parcelle',
         desc: "et les statistiques d’évolution du territoire : parcelles concernées, taux d'installations illégales, agents assermentés actifs sur Aigle, taux de remise en état, etc.",
     },
 ];
 
 const STEPS = [
-    { title: 'Lancement du partenariat', desc: 'Signature d’une convention d’utilisation.' },
-    { title: 'Formation', desc: '1h30 en visioconférence, pour vous rendre autonome sur Aigle.' },
-    { title: 'Vous utilisez Aigle !', desc: 'Détection & ciblage des actions prioritaires sur le territoire.' },
-    { title: 'Support', desc: 'Une équipe disponible 5 jours sur 7.' },
-    { title: 'Webinaires', desc: 'Pour vous présenter les évolutions de l’outil.' },
+    {
+        title: 'Vérifier votre éligibilité',
+        desc: 'Votre DDT(M) vous transmet un questionnaire d’éligibilité. Selon le résultat, vous rejoignez la prochaine vague de déploiement ou vous êtes d’abord accompagné (identifier un agent, obtenir le soutien des élus).',
+    },
+    {
+        title: 'Signer la convention',
+        desc: 'La convention d’utilisation vous est envoyée par e-mail et se signe en ligne. Aucune autre démarche contractuelle n’est nécessaire. Aigle est gratuit.',
+    },
+    {
+        title: 'Préparer votre territoire',
+        desc: 'Notre équipe intègre vos zones à enjeux et les détections, puis nettoie une grande partie des faux positifs avant d’ouvrir vos accès. Comptez environ 3 semaines.',
+    },
+    {
+        title: 'Vous former',
+        desc: '1h30 pour passer de la détection au contrôle : repérer une détection, l’évaluer, mettre à jour son statut, préparer le contrôle terrain.',
+    },
+    {
+        title: 'Passer à l’action',
+        desc: 'Vous construisez un premier plan de contrôle. Pendant 4 semaines, nous vous accompagnons de près sur vos premiers cas.',
+    },
+    {
+        title: 'Être accompagné dans la durée',
+        desc: 'Notre équipe reste joignable 5 jours sur 7 par mail et téléphone. Des webinaires trimestriels présentent les bonnes pratiques et les nouveautés de l’outil.',
+    },
 ];
 
 const TESTIMONIALS = [
@@ -159,7 +169,6 @@ const Component: React.FC = () => {
                 </p>
                 <BannerButtons>
                     <ContactButton label="Nous contacter" />
-                    <VideoButton />
                 </BannerButtons>
             </Banner>
 
@@ -173,12 +182,12 @@ const Component: React.FC = () => {
                         ]}
                     />
                 </h2>
-                <PictoTiles items={BENEFITS} orientation="horizontal" columnClassName={fr.cx('fr-col-12')} />
+                <PictoTiles items={BENEFITS} columnClassName={fr.cx('fr-col-12', 'fr-col-md-6', 'fr-col-lg-3')} />
             </Section>
 
             {/* Bloc 4 */}
-            <Section id={VIDEO_SECTION_ID}>
-                <VideoPlaceholder />
+            <Section>
+                <KeyFigures showDistribution />
             </Section>
 
             {/* Bloc 5 */}
@@ -226,15 +235,10 @@ const Component: React.FC = () => {
                 </div>
             </Section>
 
-            {/* Bloc 7 */}
-            <Section background="blue">
-                <KeyFigures />
-            </Section>
-
             {/* Bloc 8 */}
-            <Section>
-                <h2>Rejoindre Aigle en 5 étapes</h2>
-                <Steps items={STEPS} columnClassName={fr.cx('fr-col-12', 'fr-col-sm-6', 'fr-col-lg')} />
+            <Section background="blue">
+                <h2>Rejoindre Aigle en 6 étapes</h2>
+                <StepsAccordion items={STEPS} />
             </Section>
 
             {/* Bloc 9 */}

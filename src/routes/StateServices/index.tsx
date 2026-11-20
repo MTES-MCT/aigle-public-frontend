@@ -10,6 +10,7 @@ import {
     BannerButtons,
     ContactButton,
     ContactFooterBlock,
+    DownloadButton,
     Faq,
     FeatureItem,
     FeatureShowcase,
@@ -17,11 +18,8 @@ import {
     MultilineTitle,
     PictoTiles,
     Section,
-    Steps,
+    StepsAccordion,
     Testimonials,
-    VIDEO_SECTION_ID,
-    VideoButton,
-    VideoPlaceholder,
 } from '../../components/Blocks';
 import Layout from '../../components/Layout';
 import { AIGLE_NOM_SVG, AVATARS, ILLUSTRATIONS, IMAGES } from '../../constants/images';
@@ -56,60 +54,64 @@ const BENEFITS = [
 const FEATURES: FeatureItem[] = [
     {
         iconId: 'fr-icon-road-map-line',
-        title: 'Visualiser les installations illégales',
+        title: 'Visualisez les installations illégales',
         desc: 'détectées sur l’ensemble du département, par commune ou par EPCI.',
     },
     {
         iconId: 'fr-icon-send-plane-line',
-        title: 'Transmettre une fiche de signalement',
+        title: 'Transmettez une fiche de signalement',
         desc: 'en PDF à une commune pour l’alerter.',
     },
     {
         iconId: 'fr-icon-team-line',
-        title: 'Suivre l’activité des communes',
+        title: 'Suivez l’activité des communes',
         desc: 'communes engagées, communes actives sur les 30 derniers jours, agents formés, signalements qualifiés ou traités, taux de traitement.',
     },
     {
         iconId: 'fr-icon-line-chart-line',
-        title: 'Suivre les statistiques du territoire',
+        title: 'Suivez les statistiques du territoire',
         desc: 'part de parcelles détournées, taux de remise en état, nombre de signalements.',
     },
     {
         iconId: 'fr-icon-calendar-todo-line',
-        title: 'Consulter les plans de contrôle',
-        desc: 'définis par les communes, et construire votre plan de contrôle territorial.',
+        title: 'Consultez les plans de contrôle',
+        desc: 'définis par les communes, et construisez votre plan de contrôle territorial.',
     },
     {
         iconId: 'fr-icon-government-line',
-        title: 'Agir en appui d’une commune',
+        title: 'Agissez en appui d’une commune',
         desc: 'en défaut ou en demande de soutien, grâce à l’accès à toutes les informations du territoire.',
     },
 ];
 
 const STEPS = [
     {
-        title: 'Échange avec notre équipe',
-        desc: 'Problématiques du territoire, actions déjà menées, communes mobilisées, organisation souhaitée.',
-    },
-    { title: 'Signature d’une lettre d’engagement', desc: 'Par le préfet.' },
-    {
-        title: 'Préparation du territoire',
-        desc: 'Par notre équipe : intégration des zones à enjeux et des détections, nettoyage des cartes, création des accès.',
+        title: 'Cadrage & engagement',
+        desc: 'Un premier échange avec notre équipe permet de faire le point : problématiques du territoire, actions déjà menées, communes mobilisées. Vous nommez ensuite un référent projet et choisissez 3 à 5 collectivités test. Le préfet signe une lettre d’engagement adressée à la DGALN.',
     },
     {
-        title: 'Formation des référents',
-        desc: 'Formation (1h30) à l’utilisation d’Aigle par nos équipes, auprès de tous les utilisateurs définis.',
+        title: 'Préparation du territoire (1 mois)',
+        desc: 'Complétez le formulaire de pré-intégration et transmettez vos couches géographiques (aléas feu de forêt, PPRI, espaces naturels sensibles, trame verte et bleue). Notre équipe génère les zones à enjeux puis les détections, nettoie les faux positifs et crée les accès.',
     },
     {
-        title: 'Expérimentation',
-        desc: 'Avec quelques communes pilotes déjà engagées, puis, déploiement éventuel au sein du territoire.',
+        title: 'Formation (1 mois)',
+        desc: '1h30 pour les référents DDT(M) : navigation, zones à enjeux, qualification d’une détection, pilotage départemental. Puis formation des collectivités test, co-animée avec notre équipe.',
     },
-    { title: 'Pilotage', desc: 'Suivi des communes engagées, pilotage des statistiques d’action.' },
     {
-        title: 'Support de notre équipe',
-        desc: 'Une équipe disponible 5 jours sur 7 et des webinaires réguliers pour partager vos besoins et découvrir les nouveautés.',
+        title: 'Expérimentation (3 mois)',
+        desc: 'Les collectivités test transforment les détections en actions : contrôles, courriers, PV. Un point mensuel, puis un bilan Go / No-Go, décident de l’ouverture au reste du territoire.',
+    },
+    {
+        title: 'Ouverture par vagues (M5 → M12)',
+        desc: 'Un questionnaire d’éligibilité vous aide à repérer les collectivités prêtes à rejoindre Aigle. Elles arrivent en 2 à 3 vagues. Votre DDT(M) prend progressivement la main sur les formations.',
+    },
+    {
+        title: 'Pilotage & support',
+        desc: 'Suivez l’activité des communes dans le tableau de suivi territorial, envoyez des fiches de signalement et construisez votre plan de contrôle territorial. Notre équipe reste en appui : support 5 jours sur 7, webinaires trimestriels, bilan annuel.',
     },
 ];
+
+const DEPLOYMENT_KIT_URL = `${import.meta.env.BASE_URL}documents/kit-deploiement-aigle-lucca-ddtm.pdf`;
 
 const TESTIMONIALS = [
     {
@@ -119,7 +121,7 @@ const TESTIMONIALS = [
         source: 'DDTM de l’Hérault',
     },
     {
-        text: 'AIGLE est simple, efficace et motivant. On gagne du temps, c’est plus fluide.',
+        text: 'Aigle est simple, efficace et motivant. On gagne du temps, c’est plus fluide.',
         author: 'Directeur d’une DDTM',
         avatarUrl: AVATARS.elu,
     },
@@ -166,10 +168,13 @@ const Component: React.FC = () => {
                 illustration={ILLUSTRATIONS.etat}
                 breadcrumbLabel={ROUTES_MAP.stateServices.title}
             >
-                <p className={fr.cx('fr-text--lead', 'fr-mb-0')}>L’outil Aigle à destination des DDT, DDTM et DEAL.</p>
+                <p className={fr.cx('fr-text--lead', 'fr-mb-0')}>
+                    L’outil Aigle à destination
+                    <br />
+                    des DDT, DDTM et DEAL.
+                </p>
                 <BannerButtons>
                     <ContactButton label="Nous contacter" />
-                    <VideoButton />
                 </BannerButtons>
             </Banner>
 
@@ -183,8 +188,8 @@ const Component: React.FC = () => {
             </Section>
 
             {/* Bloc 4 */}
-            <Section id={VIDEO_SECTION_ID}>
-                <VideoPlaceholder />
+            <Section>
+                <KeyFigures showDistribution />
             </Section>
 
             {/* Bloc 5 */}
@@ -215,18 +220,7 @@ const Component: React.FC = () => {
                 />
             </Section>
 
-            {/* Bloc 6 : 4 étapes puis 3 étapes centrées */}
-            <Section>
-                <h2>Déployer Aigle à l’échelle d’un département</h2>
-                <Steps items={STEPS} columnClassName={fr.cx('fr-col-12', 'fr-col-sm-6', 'fr-col-lg-3')} />
-            </Section>
-
-            {/* Bloc 7 */}
-            <Section background="blue">
-                <KeyFigures showDistribution />
-            </Section>
-
-            {/* Bloc 8 */}
+            {/* Bloc 6 */}
             <Section>
                 <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-grid-row--middle')}>
                     <div className={fr.cx('fr-col-12', 'fr-col-md-7')}>
@@ -242,6 +236,7 @@ const Component: React.FC = () => {
                                 dans Lucca.
                             </li>
                         </ul>
+                        <ContactButton label="Nous contacter" />
                     </div>
                     <div className={fr.cx('fr-col-12', 'fr-col-md-5')}>
                         <img className={classes['aigle-name']} src={AIGLE_NOM_SVG} alt="Aigle" width={400} />
@@ -249,8 +244,21 @@ const Component: React.FC = () => {
                 </div>
             </Section>
 
-            {/* Bloc 9 */}
+            {/* Bloc 7 */}
             <Section background="blue">
+                <h2>Déployer Aigle dans votre département, étape par étape</h2>
+                <StepsAccordion items={STEPS} />
+                <div className={classes['centered-cta']}>
+                    <DownloadButton
+                        label="En savoir plus : télécharger le kit de déploiement"
+                        detail="PDF, 2,6 Mo"
+                        href={DEPLOYMENT_KIT_URL}
+                    />
+                </div>
+            </Section>
+
+            {/* Bloc 9 */}
+            <Section>
                 <h2>Ce qu’en pensent les services de l’État</h2>
                 <Testimonials items={TESTIMONIALS} />
             </Section>
@@ -261,7 +269,17 @@ const Component: React.FC = () => {
             </Section>
 
             {/* Bloc 11 */}
-            <ContactFooterBlock />
+            <Section background="blue">
+                <h2 className={fr.cx('fr-h3')}>Découvrir notre kit pour déployer Lucca dans votre département</h2>
+                <DownloadButton
+                    label="Télécharger le kit de déploiement"
+                    detail="PDF, 2,6 Mo"
+                    href={DEPLOYMENT_KIT_URL}
+                />
+            </Section>
+
+            {/* Bloc 12 */}
+            <ContactFooterBlock background="white" />
         </Layout>
     );
 };

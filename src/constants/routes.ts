@@ -69,3 +69,6 @@ export const ROUTES_MAP = {
 export type RouteId = keyof typeof ROUTES_MAP;
 
 export const getHref = (routeId: RouteId) => `/#${ROUTES_MAP[routeId].href}`;
+
+/** Page de contact (formulaire Brevo), avec le motif « demande de démo » présélectionné dans l’adresse. */
+export const CONTACT_HREF = `${getHref('contact')}?reason=DEMO`;

@@ -14,7 +14,7 @@ const Component: React.FC = () => {
         <Layout routeId="legalMentions">
             <div className="fr-container">
                 <div className="legal-content">
-                    <h1>Mentions légales du service numérique AIGLE</h1>
+                    <h1>Mentions légales du service numérique Aigle</h1>
 
                     <p className="last-update-text">Dernière mise à jour : mars 2025</p>
                     <ol className="legal-list">
@@ -36,7 +36,7 @@ const Component: React.FC = () => {
 
                         <li>Responsable de la publication</li>
                         <p>
-                            <span className="bold">Responsable éditorial</span> : Équipe AIGLE (
+                            <span className="bold">Responsable éditorial</span> : Équipe Aigle (
                             <a href={`mailto:${TEAM_CONTACT_EMAIL}`}>{TEAM_CONTACT_EMAIL}</a>)
                         </p>
                         <p>
@@ -69,11 +69,11 @@ const Component: React.FC = () => {
 
                         <li>Données personnelles</li>
                         <p>
-                            Le site AIGLE ne collecte aucune donnée personnelle sans le consentement explicite de
+                            Le site Aigle ne collecte aucune donnée personnelle sans le consentement explicite de
                             l'utilisateur.
                         </p>
                         <p>
-                            Le site AIGLE ne collecte aucune donnée personnelle sans le consentement explicite de
+                            Le site Aigle ne collecte aucune donnée personnelle sans le consentement explicite de
                             l'utilisateur. Les comptes utilisateurs sont créés manuellement dans le cadre de conventions
                             signées avec les collectivités, ou d'accords avec les services de l'État. Aucune donnée
                             personnelle n'est utilisée à des fins commerciales.
@@ -90,14 +90,14 @@ const Component: React.FC = () => {
 
                         <li>Propriété intellectuelle</li>
                         <p>
-                            L'outil AIGLE et ses contenus sont protégés par les droits de propriété intellectuelle
+                            L'outil Aigle et ses contenus sont protégés par les droits de propriété intellectuelle
                             détenus par l'État. Toute reproduction ou réutilisation non autorisée est interdite, sauf
                             mention contraire.
                         </p>
 
                         <li>Conditions d'utilisation</li>
                         <p>
-                            L'utilisation de la plateforme AIGLE est réservée aux agents habilités des collectivités
+                            L'utilisation de la plateforme Aigle est réservée aux agents habilités des collectivités
                             signataires d'une convention de mise à disposition.
                         </p>
 

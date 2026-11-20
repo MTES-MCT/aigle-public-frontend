@@ -2,12 +2,10 @@ import React from 'react';
 
 import { fr } from '@codegouvfr/react-dsfr';
 import { Tile } from '@codegouvfr/react-dsfr/Tile';
-import CityHall from '@codegouvfr/react-dsfr/picto/CityHall';
 import DataVisualization from '@codegouvfr/react-dsfr/picto/DataVisualization';
 import Environment from '@codegouvfr/react-dsfr/picto/Environment';
 import Firefighter from '@codegouvfr/react-dsfr/picto/Firefighter';
 import JusticeScales from '@codegouvfr/react-dsfr/picto/JusticeScales';
-import LocationFrance from '@codegouvfr/react-dsfr/picto/LocationFrance';
 import MapPin from '@codegouvfr/react-dsfr/picto/MapPin';
 import Money from '@codegouvfr/react-dsfr/picto/Money';
 import Notification from '@codegouvfr/react-dsfr/picto/Notification';
@@ -29,7 +27,7 @@ const SERVICE_ITEMS = [
     },
     {
         pictogram: <MapPin fontSize={PICTO_SIZE} />,
-        title: 'Prioriser et cibler les contrôles',
+        title: 'Prioriser et définir son plan de contrôle',
         desc: 'Croisez les détections avec les enjeux du territoire : zones inondables, risque incendie, espaces naturels remarquables, captages d’eau potable.',
     },
     {
@@ -131,7 +129,6 @@ const Component: React.FC = () => {
                             titleAs="h3"
                             title="Utiliser Aigle à l’échelle d’un territoire"
                             desc="Vous représentez une collectivité : commune ou EPCI"
-                            pictogram={<CityHall fontSize={PICTO_SIZE} />}
                             linkProps={{ href: getHref('collectivities') }}
                             enlargeLinkOrButton
                         />
@@ -143,7 +140,6 @@ const Component: React.FC = () => {
                             titleAs="h3"
                             title="Déployer Aigle dans un département"
                             desc="Vous représentez un service de l’État : DDT, DDTM, DEAL"
-                            pictogram={<LocationFrance fontSize={PICTO_SIZE} />}
                             linkProps={{ href: getHref('stateServices') }}
                             enlargeLinkOrButton
                         />
@@ -182,17 +178,14 @@ const Component: React.FC = () => {
                         />
                     </div>
                 </div>
-                <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-mt-4w')}>
+                <hr className={fr.cx('fr-mt-6w', 'fr-pb-6w')} />
+                <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters')}>
                     <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
                         <figure className={fr.cx('fr-content-media', 'fr-my-0')} role="group">
                             <Picture
-                                className={fr.cx('fr-ratio-1x1')}
                                 image={IMAGES.localisation}
-                                alt="Carte des départements utilisant Lucca et Aigle, Aigle uniquement ou Lucca uniquement"
+                                alt="Carte des territoires utilisateurs d’Aigle et Lucca. Lucca et Aigle : Somme, Val-d’Oise, Morbihan, Gironde, Ardèche, Tarn, Haute-Garonne, Hérault. Aigle uniquement : Manche, Seine-et-Marne, Charente-Maritime, Dordogne, Lot, Gard, Vaucluse, Bouches-du-Rhône, Pyrénées-Atlantiques, Réunion, Guadeloupe, Martinique, Guyane. Lucca uniquement : Ille-et-Vilaine, Aveyron, Hautes-Pyrénées, Pyrénées-Orientales."
                             />
-                            <figcaption className={fr.cx('fr-content-media__caption')}>
-                                Territoires utilisateurs d’Aigle &amp; Lucca
-                            </figcaption>
                         </figure>
                     </div>
                     <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
@@ -221,10 +214,9 @@ const Component: React.FC = () => {
                         ))}
                     </div>
                 </div>
-            </Section>
 
-            {/* Bloc 6 */}
-            <Section>
+                {/* Bloc 6 : Découvrir Lucca, dans la même section, sous un séparateur */}
+                <hr className={fr.cx('fr-mt-6w', 'fr-pb-6w')} />
                 <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-grid-row--middle')}>
                     <div className={fr.cx('fr-col-12', 'fr-col-md-7')}>
                         <h2 className={fr.cx('fr-mb-2w')}>Découvrir Lucca</h2>

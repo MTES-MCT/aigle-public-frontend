@@ -114,24 +114,6 @@
     }
 }
 
-/* ----- Vidéo */
-
-.video-figure {
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 56rem;
-}
-
-.video-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed var(--border-default-grey);
-    color: var(--text-mention-grey);
-    background-color: var(--background-default-grey);
-}
-
 /* ----- Chiffres clés */
 
 .key-figure-value {
@@ -162,8 +144,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-title-grey);
+    color: var(--text-title-blue-france);
     background-color: var(--blue-france-850-200);
+    border: 2px solid var(--border-action-high-blue-france);
 }
 
 .distribution-legend {
@@ -176,34 +159,17 @@
 .legend-item {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--text-mention-grey);
+    gap: 0.75rem;
+    font-size: 1.125rem;
+    color: var(--text-default-grey);
 }
 
 .legend-swatch {
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
     padding: 0;
-}
-
-/* ----- Étapes */
-
-.step {
-    display: flex;
-    flex-direction: column;
-}
-
-.step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    margin-bottom: 1rem;
-    border-radius: 50%;
-    color: var(--text-inverted-blue-france);
-    background-color: var(--background-action-high-blue-france);
 }
 
 /* ----- Témoignages : citations alignées en haut, auteurs alignés entre eux */
@@ -248,4 +214,25 @@ div.testimonial-image {
     @media (min-width: 48em) {
         order: 2;
     }
+}
+
+/* ----- Étapes en volets */
+
+.steps-accordion-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.steps-accordion-number {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-weight: 700;
+    color: var(--text-inverted-blue-france);
+    background-color: var(--background-action-high-blue-france);
 }

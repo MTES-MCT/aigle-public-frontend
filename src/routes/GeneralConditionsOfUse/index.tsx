@@ -9,26 +9,26 @@ const Component: React.FC = () => {
         <Layout routeId="generalUseConditions">
             <div className="fr-container">
                 <div className="legal-content">
-                    <h1>Conditions Générales d'Utilisation (CGU) du service numérique AIGLE</h1>
+                    <h1>Conditions Générales d'Utilisation (CGU) du service numérique Aigle</h1>
 
                     <p className="last-update-text">Dernière mise à jour : mars 2025</p>
                     <ol className="legal-list">
                         <li>Objet</li>
                         <p>
-                            L'application AIGLE est un outil numérique permettant la détection de constructions et
+                            L'application Aigle est un outil numérique permettant la détection de constructions et
                             installations illégales en zones agricoles et naturelles, à l'aide d'intelligence
                             artificielle appliquée à des données aériennes.{' '}
                         </p>
                         <p>
                             Ces Conditions Générales d'Utilisation (CGU) ont pour objet de définir les modalités d'accès
-                            et d'utilisation de l'application AIGLE par les utilisateurs autorisés appartenant à une
+                            et d'utilisation de l'application Aigle par les utilisateurs autorisés appartenant à une
                             collectivité.
                         </p>
                         <li>Accès au service</li>
                         <p>
-                            L'accès à AIGLE est réservé aux agents habilités d'une collectivité, et aux services de
+                            L'accès à Aigle est réservé aux agents habilités d'une collectivité, et aux services de
                             l'État. L'accès se fait via un compte nominatif et sécurisé, délivré après validation par
-                            l'équipe AIGLE.
+                            l'équipe Aigle.
                         </p>
                         <li>Conditions d'utilisation</li>
                         <ul>
@@ -43,7 +43,7 @@ const Component: React.FC = () => {
                             <li>Aucune exploitation commerciale des données n'est autorisée.</li>
                             <li>
                                 L'utilisateur s'engage à ne pas tenter d'extraire, copier ou manipuler les données hors
-                                du cadre d'usage de la plateforme AIGLE.
+                                du cadre d'usage de la plateforme Aigle.
                             </li>
                         </ul>
                         <li>Responsabilités de l'utilisateur</li>
@@ -55,17 +55,17 @@ const Component: React.FC = () => {
                                 par sa collectivité ;
                             </li>
                             <li>
-                                de la vérification des détections fournies par AIGLE avant toute décision administrative
+                                de la vérification des détections fournies par Aigle avant toute décision administrative
                                 ;
                             </li>
                             <li>
-                                de signaler toute anomalie ou suggestion d'amélioration à l'équipe AIGLE via
+                                de signaler toute anomalie ou suggestion d'amélioration à l'équipe Aigle via
                                 contact@aigle.beta.gouv.fr.
                             </li>
                         </ul>
                         <li>Propriété intellectuelle</li>
                         <p>
-                            L'application AIGLE, son interface et les données associées sont protégées par le droit
+                            L'application Aigle, son interface et les données associées sont protégées par le droit
                             d'auteur et le droit des bases de données. Aucune cession de droits n'est accordée à
                             l'utilisateur. Toute reproduction, modification ou ré-utilisation non autorisée est
                             interdite.
@@ -73,7 +73,7 @@ const Component: React.FC = () => {
                         <li>Sécurité et confidentialité</li>
                         <ul>
                             <li>
-                                Les données consultées sur AIGLE ne doivent pas être partagées avec des tiers non
+                                Les données consultées sur Aigle ne doivent pas être partagées avec des tiers non
                                 autorisés.
                             </li>
                             <li>

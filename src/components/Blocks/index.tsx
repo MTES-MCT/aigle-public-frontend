@@ -10,7 +10,7 @@ import { Tile } from '@codegouvfr/react-dsfr/Tile';
 import avatarDefaultUrl from '@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/avatar.svg';
 import clsx from 'clsx';
 import { KEY_FIGURES } from '../../constants/content';
-import { getHref } from '../../constants/routes';
+import { CONTACT_HREF, getHref } from '../../constants/routes';
 import classes from './index.module.scss';
 
 /** Rend un titre où « / » marque un retour à la ligne voulu. */
@@ -187,24 +187,6 @@ export const FeatureShowcase: React.FC<{ rows: FeatureRow[] }> = ({ rows }) => (
     </>
 );
 
-// ----- Emplacement vidéo (vidéo à fournir)
-
-export const VIDEO_SECTION_ID = 'video';
-
-export const VideoPlaceholder: React.FC = () => (
-    <figure
-        className={clsx(fr.cx('fr-content-media'), classes['video-figure'])}
-        role="group"
-        aria-label="L’outil Aigle en vidéo"
-    >
-        {/* TODO : remplacer cet emplacement par la vidéo Aigle lorsqu’elle sera fournie */}
-        <div className={clsx(fr.cx('fr-responsive-vid'), classes['video-placeholder'])}>
-            <p className={fr.cx('fr-mb-0')}>Vidéo Aigle (à venir)</p>
-        </div>
-        <figcaption className={fr.cx('fr-content-media__caption')}>L’outil Aigle en vidéo</figcaption>
-    </figure>
-);
-
 // ----- Chiffres clés
 
 export const KeyFigures: React.FC<{ showDistribution?: boolean }> = ({ showDistribution }) => (
@@ -239,11 +221,15 @@ const UsersDistribution: React.FC = () => (
         <ul className={clsx(classes['raw-list'], classes['distribution-legend'])} aria-hidden="true">
             <li className={classes['legend-item']}>
                 <span className={clsx(classes['legend-swatch'], classes['distribution-collectivities'])} />
-                Collectivités : communes &amp; EPCI
+                <span>
+                    <strong>88 %</strong> Collectivités : communes &amp; EPCI
+                </span>
             </li>
             <li className={classes['legend-item']}>
                 <span className={clsx(classes['legend-swatch'], classes['distribution-ddt'])} />
-                DDT(M)
+                <span>
+                    <strong>12 %</strong> DDT(M)
+                </span>
             </li>
         </ul>
     </div>
@@ -256,21 +242,31 @@ export interface StepItem {
     desc: string;
 }
 
-export const Steps: React.FC<{ items: StepItem[]; columnClassName: string }> = ({ items, columnClassName }) => (
-    <ol className={clsx(fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-grid-row--center'), classes['raw-list'])}>
+// ----- Étapes en volets (accordéons DSFR numérotés, le premier ouvert)
+
+export const StepsAccordion: React.FC<{ items: StepItem[] }> = ({ items }) => (
+    <div className={clsx(fr.cx('fr-accordions-group'), classes['steps-accordion'])}>
         {items.map((item, index) => (
-            <li key={index} className={clsx(columnClassName, classes.step)}>
-                <span className={clsx(fr.cx('fr-h4'), classes['step-number'])} aria-hidden="true">
-                    {index + 1}
-                </span>
-                <p className={fr.cx('fr-mb-1w')}>
-                    <span className={fr.cx('fr-sr-only')}>Étape {index + 1} : </span>
-                    <strong>{item.title}</strong>
-                </p>
+            <Accordion
+                key={index}
+                titleAs="h3"
+                defaultExpanded={index === 0}
+                label={
+                    <span className={classes['steps-accordion-label']}>
+                        <span className={classes['steps-accordion-number']} aria-hidden="true">
+                            {index + 1}
+                        </span>
+                        <span>
+                            <span className={fr.cx('fr-sr-only')}>Étape {index + 1} : </span>
+                            {item.title}
+                        </span>
+                    </span>
+                }
+            >
                 <p className={fr.cx('fr-mb-0')}>{item.desc}</p>
-            </li>
+            </Accordion>
         ))}
-    </ol>
+    </div>
 );
 
 // ----- Témoignages
@@ -332,7 +328,7 @@ export const ContactButton: React.FC<{ label: string; priority?: ButtonProps['pr
     label,
     priority = 'primary',
 }) => (
-    <Button {...CONTACT_BUTTON_ICON} priority={priority} linkProps={{ href: getHref('contact') }}>
+    <Button {...CONTACT_BUTTON_ICON} priority={priority} linkProps={{ href: CONTACT_HREF }}>
         {label}
     </Button>
 );
@@ -350,14 +346,13 @@ export const ExternalButton: React.FC<{ label: string; href: string; priority?: 
     </Button>
 );
 
-export const VideoButton: React.FC = () => (
+export const DownloadButton: React.FC<{ label: string; href: string; detail: string }> = ({ label, href, detail }) => (
     <Button
-        priority="secondary"
-        iconId="fr-icon-play-circle-line"
+        iconId="fr-icon-download-line"
         iconPosition="right"
-        linkProps={{ href: `#${VIDEO_SECTION_ID}` }}
+        linkProps={{ href, download: true, title: `${label} (${detail})`, target: '_self' }}
     >
-        Voir la vidéo
+        {label}
     </Button>
 );
 
@@ -367,8 +362,8 @@ export const BannerButtons: React.FC<PropsWithChildren> = ({ children }) => (
 
 // ----- Bloc « Nous contacter » (bas des pages Collectivités et État)
 
-export const ContactFooterBlock: React.FC = () => (
-    <Section background="blue">
+export const ContactFooterBlock: React.FC<{ background?: SectionProps['background'] }> = ({ background = 'blue' }) => (
+    <Section background={background}>
         <h2 className={fr.cx('fr-h3')}>Nous contacter</h2>
         {/* Le bouton « Utilisateurs actifs : accéder au centre d’aide » sera ajouté lorsque le centre d’aide existera. */}
         <ButtonsGroup
@@ -377,7 +372,7 @@ export const ContactFooterBlock: React.FC = () => (
                 {
                     children: 'Demander un RDV pour découvrir Aigle',
                     ...CONTACT_BUTTON_ICON,
-                    linkProps: { href: getHref('contact') },
+                    linkProps: { href: CONTACT_HREF },
                 },
             ]}
         />
